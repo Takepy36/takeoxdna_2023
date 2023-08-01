@@ -1,0 +1,59 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{positioning,fit,matrix}
+\usepackage{todonotes}
+%\usepackage{scalefnt}
+
+%\tikzset{%
+%  textnode/.style     = {\sffamily font=\fontsize{10}{12.4}\selectfont},
+%}
+
+\begin{document}
+
+\sffamily%\sansmath
+%\scalefont{0.01}
+%\fontsize{8}{10.0}\selectfont
+
+\begin{tikzpicture}
+
+% L1
+\node[inner sep=0] (A)                 {\includegraphics[width=5cm]{plots/seqA-convergence_bestever.pdf}};
+\node[inner sep=0, below=0mm of A] (B) {\includegraphics[width=5cm]{plots/seqB-convergence_bestever.pdf}};
+\node[inner sep=0, below=0mm of B] (C) {\includegraphics[width=5cm]{plots/seqC-convergence_bestever.pdf}};
+\node[inner sep=0, below=0mm of C] (D) {\includegraphics[width=5cm]{plots/seqD-convergence_bestever.pdf}};
+
+% L2
+\node[inner sep=0, right=5mm of A] (E) {\includegraphics[width=5cm]{plots/seqE-convergence_bestever.pdf}};
+\node[inner sep=0, below=0mm of E] (F) {\includegraphics[width=5cm]{plots/seqF-convergence_bestever.pdf}};
+\node[inner sep=0, below=0mm of F] (G) {\includegraphics[width=5cm]{plots/seqG-convergence_bestever.pdf}};
+\node[inner sep=0, below=0mm of G] (H) {\includegraphics[width=5cm]{plots/seqH-convergence_bestever.pdf}};
+
+% L3
+\node[inner sep=0, right=5mm of E] (I) {\includegraphics[width=5cm]{plots/seqI-convergence_bestever.pdf}};
+\node[inner sep=0, below=0mm of I] (J) {\includegraphics[width=5cm]{plots/seqJ-convergence_bestever.pdf}};
+\node[inner sep=0, below=0mm of J] (K) {\includegraphics[width=5cm]{plots/seqK-convergence_bestever.pdf}};
+\node[inner sep=0, below=0mm of K] (L) {\includegraphics[width=5cm]{plots/seqL-convergence_bestever.pdf}};
+
+% Titles
+\node[color=black,above=6mm of A,rotate=0,anchor=north,align=center,shift={(0.00,0.00)}] {\Large{L1}};
+\node[color=black,above=6mm of E,rotate=0,anchor=north,align=center,shift={(0.00,0.00)}] {\Large{L2}};
+\node[color=black,above=6mm of I,rotate=0,anchor=north,align=center,shift={(0.00,0.00)}] {\Large{L3}};
+
+\node[color=black,left=1.0mm of A,rotate=0,anchor=north,align=center,shift={(0.00,0.40)}] {A};
+\node[color=black,left=1.0mm of B,rotate=0,anchor=north,align=center,shift={(0.00,0.40)}] {B};
+\node[color=black,left=1.0mm of C,rotate=0,anchor=north,align=center,shift={(0.00,0.40)}] {C};
+\node[color=black,left=1.0mm of D,rotate=0,anchor=north,align=center,shift={(0.00,0.40)}] {D};
+\node[color=black,left=1.0mm of E,rotate=0,anchor=north,align=center,shift={(0.00,0.40)}] {E};
+\node[color=black,left=1.0mm of F,rotate=0,anchor=north,align=center,shift={(0.00,0.40)}] {F};
+\node[color=black,left=1.0mm of G,rotate=0,anchor=north,align=center,shift={(0.00,0.40)}] {G};
+\node[color=black,left=1.0mm of H,rotate=0,anchor=north,align=center,shift={(0.00,0.40)}] {H};
+\node[color=black,left=1.0mm of I,rotate=0,anchor=north,align=center,shift={(0.00,0.40)}] {I};
+\node[color=black,left=1.0mm of J,rotate=0,anchor=north,align=center,shift={(0.00,0.40)}] {J};
+\node[color=black,left=1.0mm of K,rotate=0,anchor=north,align=center,shift={(0.00,0.40)}] {K};
+\node[color=black,left=1.0mm of L,rotate=0,anchor=north,align=center,shift={(0.00,0.40)}] {L};
+
+
+
+\end{tikzpicture}
+
+\end{document}

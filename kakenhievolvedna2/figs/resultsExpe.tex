@@ -1,0 +1,192 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{positioning,fit,matrix}
+\usepackage{todonotes}
+%\usepackage{scalefnt}
+
+%\tikzset{%
+%  textnode/.style     = {\sffamily font=\fontsize{10}{12.4}\selectfont},
+%}
+
+\begin{document}
+
+\sffamily%\sansmath
+%\scalefont{0.01}
+%\fontsize{8}{10.0}\selectfont
+
+\begin{tikzpicture}
+
+% L1
+\node[inner sep=0] (pl1a) {\includegraphics[width=4.0cm]{plots/pepperhist-L1-entropyReactionTypes-1-22-39.pdf}};
+\node[inner sep=0, right=3mm of pl1a] (pl1b) {\includegraphics[width=4.0cm]{plots/pepperhist-L1-entropyReactionTypes-1-24-20.pdf}};
+\node[inner sep=0, right=3mm of pl1b] (pl1c) {\includegraphics[width=4.0cm]{plots/pepperhist-L1-meanStruct-0-23-5.pdf}};
+\node[inner sep=0, right=3mm of pl1c] (pl1d) {\includegraphics[width=4.0cm]{plots/pepperhist-L1-meanStruct-2-13-3.pdf}};
+
+\node[inner sep=0, below=0mm of pl1a] (nl1a) {\includegraphics[width=4.0cm]{plots/hist-L1-entropyReactionTypes-1-22-39.pdf}};
+\node[inner sep=0, below=0mm of pl1b] (nl1b) {\includegraphics[width=4.0cm]{plots/hist-L1-entropyReactionTypes-1-24-20.pdf}};
+\node[inner sep=0, below=0mm of pl1c] (nl1c) {\includegraphics[width=4.0cm]{plots/hist-L1-meanStruct-0-23-5.pdf}};
+\node[inner sep=0, below=0mm of pl1d] (nl1d) {\includegraphics[width=4.0cm]{plots/hist-L1-meanStruct-2-13-3.pdf}};
+
+\node[color=black,above=5mm of pl1a,rotate=0,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{(a)}};
+\node[color=black,above=5mm of pl1b,rotate=0,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{(b)}};
+\node[color=black,above=5mm of pl1c,rotate=0,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{(c)}};
+\node[color=black,above=5mm of pl1d,rotate=0,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{(d)}};
+
+\node[color=black,left=5mm of pl1a,rotate=90,anchor=north,align=center,shift={(0.00,0.00)}] {Peppercorn};
+\node[color=black,left=5mm of nl1a,rotate=90,anchor=north,align=center,shift={(0.00,0.00)}] {Nupack};
+\node[color=black,left=10mm of pl1a,rotate=90,anchor=north,align=center,shift={(-1.00,0.00)}] {\textbf{L1}};
+
+
+
+
+% L2
+%\node[inner sep=0, below=10mm of nl1a] (pl2e) {\includegraphics[width=4.0cm]{plots/pepperhist-L2-entropyReactionTypes-1-18-3.pdf}};
+%\node[inner sep=0, right=3mm of pl2e] (pl2f) {\includegraphics[width=4.0cm]{plots/pepperhist-L2-entropyReactionTypes-1-28-14.pdf}};
+%\node[inner sep=0, right=3mm of pl2f] (pl2g) {\includegraphics[width=4.0cm]{plots/pepperhist-L2-meanStruct-0-26-6.pdf}};
+%\node[inner sep=0, right=3mm of pl2g] (pl2h) {\includegraphics[width=4.0cm]{plots/pepperhist-L2-meanStruct-2-29-45.pdf}};
+%
+%\node[inner sep=0, below=0mm of pl2e] (nl2e) {\includegraphics[width=4.0cm]{plots/hist-L2-entropyReactionTypes-1-18-3.pdf}};
+%\node[inner sep=0, below=0mm of pl2f] (nl2f) {\includegraphics[width=4.0cm]{plots/hist-L2-entropyReactionTypes-1-28-14.pdf}};
+%\node[inner sep=0, below=0mm of pl2g] (nl2g) {\includegraphics[width=4.0cm]{plots/hist-L2-meanStruct-0-26-6.pdf}};
+%\node[inner sep=0, below=0mm of pl2h] (nl2h) {\includegraphics[width=4.0cm]{plots/hist-L2-meanStruct-2-29-45.pdf}};
+\node[inner sep=0, below=10mm of nl1a] (pl2e) {\includegraphics[width=4.0cm]{plots/pepperhist-L2-entropyReactionTypes-1-36-11.pdf}};
+\node[inner sep=0, right=3mm of pl2e] (pl2f) {\includegraphics[width=4.0cm]{plots/pepperhist-L2-entropyReactionTypes-0-21-5.pdf}};
+\node[inner sep=0, right=3mm of pl2f] (pl2g) {\includegraphics[width=4.0cm]{plots/pepperhist-L2-meanStruct-2-31-18.pdf}};
+\node[inner sep=0, right=3mm of pl2g] (pl2h) {\includegraphics[width=4.0cm]{plots/pepperhist-L2-meanStruct-1-36-12.pdf}};
+
+\node[inner sep=0, below=0mm of pl2e] (nl2e) {\includegraphics[width=4.0cm]{plots/hist-L2-entropyReactionTypes-1-36-11.pdf}};
+\node[inner sep=0, below=0mm of pl2f] (nl2f) {\includegraphics[width=4.0cm]{plots/hist-L2-entropyReactionTypes-0-21-5.pdf}};
+\node[inner sep=0, below=0mm of pl2g] (nl2g) {\includegraphics[width=4.0cm]{plots/hist-L2-meanStruct-2-31-18.pdf}};
+\node[inner sep=0, below=0mm of pl2h] (nl2h) {\includegraphics[width=4.0cm]{plots/hist-L2-meanStruct-1-36-12.pdf}};
+
+%\node[inner sep=0, below=0mm of nl2e] (el2e) {\includegraphics[width=4.0cm]{allSizes.pdf}};
+%\node[inner sep=0, below=0mm of nl2f] (el2f) {\includegraphics[width=4.0cm]{allSizes.pdf}};
+%\node[inner sep=0, below=0mm of nl2g] (el2g) {\includegraphics[width=4.0cm]{allSizes.pdf}};
+%\node[inner sep=0, below=0mm of nl2h] (el2h) {\includegraphics[width=4.0cm]{allSizes.pdf}};
+
+
+\node[color=black,above=5mm of pl2e,rotate=0,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{(e)}};
+\node[color=black,above=5mm of pl2f,rotate=0,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{(f)}};
+\node[color=black,above=5mm of pl2g,rotate=0,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{(g)}};
+\node[color=black,above=5mm of pl2h,rotate=0,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{(h)}};
+
+\node[color=black,left=5mm of pl2e,rotate=90,anchor=north,align=center,shift={(0.00,0.00)}] {Peppercorn};
+\node[color=black,left=5mm of nl2e,rotate=90,anchor=north,align=center,shift={(0.00,0.00)}] {Nupack};
+%\node[color=black,left=5mm of el2e,rotate=90,anchor=north,align=center,shift={(0.00,0.00)}] {Experiments};
+\node[color=black,left=10mm of nl2e,rotate=90,anchor=north,align=center,shift={(0.00,0.00)}] {\textbf{L2}};
+
+
+
+
+
+% L3
+\node[inner sep=0, below=10mm of nl2e] (pl3i) {\includegraphics[width=4.0cm]{plots/pepperhist-L3-entropyReactionTypes-0-25-2.pdf}};
+\node[inner sep=0, right=3mm of pl3i] (pl3j) {\includegraphics[width=4.0cm]{plots/pepperhist-L3-entropyReactionTypes-1-28-33.pdf}};
+\node[inner sep=0, right=3mm of pl3j] (pl3k) {\includegraphics[width=4.0cm]{plots/pepperhist-L3-entropyReactionTypes-1-29-46.pdf}};
+\node[inner sep=0, right=3mm of pl3k] (pl3l) {\includegraphics[width=4.0cm]{plots/pepperhist-L3-meanStruct-1-30-35.pdf}};
+
+\node[inner sep=0, below=0mm of pl3i] (nl3i) {\includegraphics[width=4.0cm]{plots/hist-L3-entropyReactionTypes-0-25-2.pdf}};
+\node[inner sep=0, below=0mm of pl3j] (nl3j) {\includegraphics[width=4.0cm]{plots/hist-L3-entropyReactionTypes-1-28-33.pdf}};
+\node[inner sep=0, below=0mm of pl3k] (nl3k) {\includegraphics[width=4.0cm]{plots/hist-L3-entropyReactionTypes-1-29-46.pdf}};
+\node[inner sep=0, below=0mm of pl3l] (nl3l) {\includegraphics[width=4.0cm]{plots/hist-L3-meanStruct-1-30-35.pdf}};
+
+\node[color=black,above=5mm of pl3i,rotate=0,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{(i)}};
+\node[color=black,above=5mm of pl3j,rotate=0,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{(j)}};
+\node[color=black,above=5mm of pl3k,rotate=0,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{(k)}};
+\node[color=black,above=5mm of pl3l,rotate=0,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{(l)}};
+
+\node[color=black,left=5mm of pl3i,rotate=90,anchor=north,align=center,shift={(0.00,0.00)}] {Peppercorn};
+\node[color=black,left=5mm of nl3i,rotate=90,anchor=north,align=center,shift={(0.00,0.00)}] {Nupack};
+\node[color=black,left=10mm of pl3i,rotate=90,anchor=north,align=center,shift={(-1.00,0.00)}] {\textbf{L3}};
+
+
+
+%%%%%
+
+%% Solution 1-2
+%\node[inner sep=0] (pepper1) {\includegraphics[width=4.0cm]{allSizes.pdf}};
+%\node[inner sep=0, right=0mm of pepper1] (expe1) {\includegraphics[width=4.0cm]{allSizes.pdf}};
+%\node[color=black,left=3mm of pepper1,rotate=0,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{(a)}};
+%\node[inner sep=0, right=10mm of expe1] (pepper2) {\includegraphics[width=4.0cm]{allSizes.pdf}};
+%\node[inner sep=0, right=0mm of pepper2] (expe2) {\includegraphics[width=4.0cm]{allSizes.pdf}};
+%\node[color=black,left=3mm of pepper2,rotate=0,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{(b)}};
+%
+%
+%% Solution 3-4
+%\node[inner sep=0, below=0mm of pepper1] (pepper3) {\includegraphics[width=4.0cm]{allSizes.pdf}};
+%\node[inner sep=0, right=0mm of pepper3] (expe3) {\includegraphics[width=4.0cm]{allSizes.pdf}};
+%\node[color=black,left=3mm of pepper3,rotate=0,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{(c)}};
+%\node[inner sep=0, right=10mm of expe3] (pepper4) {\includegraphics[width=4.0cm]{allSizes.pdf}};
+%\node[inner sep=0, right=0mm of pepper4] (expe4) {\includegraphics[width=4.0cm]{allSizes.pdf}};
+%\node[color=black,left=3mm of pepper4,rotate=0,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{(d)}};
+%
+%
+%% Solution 5-6
+%\node[inner sep=0, below=0mm of pepper3] (pepper5) {\includegraphics[width=4.0cm]{allSizes.pdf}};
+%\node[inner sep=0, right=0mm of pepper5] (expe5) {\includegraphics[width=4.0cm]{allSizes.pdf}};
+%\node[color=black,left=3mm of pepper5,rotate=0,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{(e)}};
+%\node[inner sep=0, right=10mm of expe5] (pepper6) {\includegraphics[width=4.0cm]{allSizes.pdf}};
+%\node[inner sep=0, right=0mm of pepper6] (expe6) {\includegraphics[width=4.0cm]{allSizes.pdf}};
+%\node[color=black,left=3mm of pepper6,rotate=0,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{(f)}};
+%
+%% Solution 7-8
+%\node[inner sep=0, below=0mm of pepper5] (pepper7) {\includegraphics[width=4.0cm]{allSizes.pdf}};
+%\node[inner sep=0, right=0mm of pepper7] (expe7) {\includegraphics[width=4.0cm]{allSizes.pdf}};
+%\node[color=black,left=3mm of pepper7,rotate=0,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{(g)}};
+%\node[inner sep=0, right=10mm of expe7] (pepper8) {\includegraphics[width=4.0cm]{allSizes.pdf}};
+%\node[inner sep=0, right=0mm of pepper8] (expe8) {\includegraphics[width=4.0cm]{allSizes.pdf}};
+%\node[color=black,left=3mm of pepper8,rotate=0,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{(h)}};
+%
+%
+%
+%% Titles
+%\node[color=black,above=5mm of pepper1,rotate=0,anchor=north,align=center,shift={(0.00,0.00)}] {Peppercorn};
+%\node[color=black,above=5mm of expe1,rotate=0,anchor=north,align=center,shift={(0.00,0.00)}] {Experiments};
+%\node[color=black,above=5mm of pepper2,rotate=0,anchor=north,align=center,shift={(0.00,0.00)}] {Peppercorn};
+%\node[color=black,above=5mm of expe2,rotate=0,anchor=north,align=center,shift={(0.00,0.00)}] {Experiments};
+
+
+
+
+%%%%%
+
+%% L1
+%\node[inner sep=0] (baseline1) {\includegraphics[width=6cm]{plots/peppercorn-L1-meanStruct.pdf}};
+%\node[inner sep=0, right=0mm of baseline1] (baseline2) {\includegraphics[width=6cm]{plots/peppercorn-L1-entropyComplexSize.pdf}};
+%
+%
+%% L2
+%\node[inner sep=0, below=0mm of baseline1] (alex1) {\includegraphics[width=6cm]{plots/peppercorn-L2-meanStruct.pdf}};
+%\node[inner sep=0, right=0mm of alex1] (alex2) {\includegraphics[width=6cm]{plots/peppercorn-L2-entropyComplexSize.pdf}};
+%
+%
+%% L3
+%\node[inner sep=0, below=0mm of alex1] (tetra1) {\includegraphics[width=6cm]{plots/peppercorn-L3-meanStruct.pdf}};
+%\node[inner sep=0, right=0mm of tetra1] (tetra2) {\includegraphics[width=6cm]{plots/peppercorn-L3-entropyComplexSize.pdf}};
+%
+%
+%% CBar
+%\node[inner sep=0, below=0mm of tetra1] (cbar1) {\includegraphics[width=6cm]{plots/peppercorn-cbar-meanStruct.pdf}};
+%\node[inner sep=0, right=0mm of cbar1] (cbar2) {\includegraphics[width=6cm]{plots/peppercorn-cbar-entropyComplexSize.pdf}};
+%
+%
+%% Titles
+%\node[color=black,above=5mm of baseline1,rotate=0,anchor=north,align=center,shift={(0.20,0.00)}] {Mean Struct. Size};
+%\node[color=black,above=5mm of baseline2,rotate=0,anchor=north,align=center,shift={(0.20,0.00)}] {Entropy};
+%
+%\node[color=black,above=1.5mm of baseline1,rotate=0,anchor=north,align=center,shift={(-1.60,0.00)}] {\tiny{$k=(2,3)$}};
+%\node[color=black,above=1.5mm of baseline1,rotate=0,anchor=north,align=center,shift={(0.20,0.00)}] {\tiny{$k=(4,5)$}};
+%\node[color=black,above=1.5mm of baseline1,rotate=0,anchor=north,align=center,shift={(2.00,0.00)}] {\tiny{$k=(6,7)$}};
+%\node[color=black,above=1.5mm of baseline2,rotate=0,anchor=north,align=center,shift={(-1.60,0.00)}] {\tiny{$k=(2,3)$}};
+%\node[color=black,above=1.5mm of baseline2,rotate=0,anchor=north,align=center,shift={(0.20,0.00)}] {\tiny{$k=(4,5)$}};
+%\node[color=black,above=1.5mm of baseline2,rotate=0,anchor=north,align=center,shift={(2.00,0.00)}] {\tiny{$k=(6,7)$}};
+%
+%\node[color=black,left=3mm of baseline1,rotate=90,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{L1}};
+%\node[color=black,left=3mm of alex1,rotate=90,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{L2}};
+%\node[color=black,left=3mm of tetra1,rotate=90,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{L3}};
+
+
+
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,252 @@
+maxDistance: 6
+nupack_path: ./results/nupack-optimSeq-8/output/
+pil_path: ./results/pils/
+strand_sets:
+- coordinates: 1,22,39
+  domains:
+    a: GGGTCGAACC
+    b: CCTTGCAAGG
+  grid: L1-ERT
+  id: A_random
+  nupack_file: L1-A_random
+  pil_file: L1-A
+  sensitivity: 0.8
+- coordinates: 1,22,39
+  domains:
+    a: ACCGAAGGAG
+    b: TTATACCAGT
+  grid: L1-ERT
+  id: A_GA
+  nupack_file: L1-A_GA
+  pil_file: L1-A
+  sensitivity: 0.8
+- coordinates: 1,24,20
+  domains:
+    a: GCCGTACGGT
+    b: ACTTGGAGCG
+  grid: L1-ERT
+  id: B_random
+  nupack_file: L1-B_random
+  pil_file: L1-B
+  sensitivity: 0.8
+- coordinates: 1,24,20
+  domains:
+    a: GTCCGTGCCT
+    b: CTCACCATTG
+  grid: L1-ERT
+  id: B_GA
+  nupack_file: L1-B_GA
+  pil_file: L1-B
+  sensitivity: 0.8
+- coordinates: 0,23,5
+  domains:
+    a: CTTCTTGCAG
+    b: ATCTTTTGAT
+  grid: L1-MSS
+  id: C_random
+  nupack_file: L1-C_random
+  pil_file: L1-C
+  sensitivity: 0.8
+- coordinates: 0,23,5
+  domains:
+    a: CCTTCTATTG
+    b: ATCTTACGAT
+  grid: L1-MSS
+  id: C_GA
+  nupack_file: L1-C_GA
+  pil_file: L1-C
+  sensitivity: 0.8
+- coordinates: 2,13,3
+  domains:
+    a: ACTGCAAAGT
+    b: CGCATGCGAT
+  grid: L1-MSS
+  id: D_random
+  nupack_file: L1-D_random
+  pil_file: L1-D
+  sensitivity: 0.8
+- coordinates: 2,13,3
+  domains:
+    a: CGCACCAAGC
+    b: CGGGCCCGAT
+  grid: L1-MSS
+  id: D_GA
+  nupack_file: L1-D_GA
+  pil_file: L1-D
+  sensitivity: 0.8
+- coordinates: 1,36,11
+  domains:
+    a: CCACT
+    b: TAAAG
+  grid: L2-ERT
+  id: E_random
+  nupack_file: L2-E_random
+  pil_file: L2-E
+  sensitivity: 0.5
+- coordinates: 1,36,11
+  domains:
+    a: TTACG
+    b: AGACA
+  grid: L2-ERT
+  id: E_GA
+  nupack_file: L2-E_GA
+  pil_file: L2-E
+  sensitivity: 0.5
+- coordinates: 0,21,5
+  domains:
+    a: CTGAG
+    b: ATCGA
+  grid: L2-ERT
+  id: F_random
+  nupack_file: L2-F_random
+  pil_file: L2-F
+  sensitivity: 0.5
+- coordinates: 0,21,5
+  domains:
+    a: CTGAG
+    b: ATCCA
+  grid: L2-ERT
+  id: F_GA
+  nupack_file: L2-F_GA
+  pil_file: L2-F
+  sensitivity: 0.5
+- coordinates: 2,31,18
+  domains:
+    a: AAGAT
+    b: TGGCA
+  grid: L2-MSS
+  id: G_random
+  nupack_file: L2-G_random
+  pil_file: L2-G
+  sensitivity: 0.5
+- coordinates: 2,31,18
+  domains:
+    a: AAGAT
+    b: TGGCA
+  grid: L2-MSS
+  id: G_GA
+  nupack_file: L2-G_GA
+  pil_file: L2-G
+  sensitivity: 0.5
+- coordinates: 1,36,12
+  domains:
+    a: GGTAC
+    b: GGGCG
+  grid: L2-MSS
+  id: H_random
+  nupack_file: L2-H_random
+  pil_file: L2-H
+  sensitivity: 0.5
+- coordinates: 1,36,12
+  domains:
+    a: ATATG
+    b: GGTCC
+  grid: L2-MSS
+  id: H_GA
+  nupack_file: L2-H_GA
+  pil_file: L2-H
+  sensitivity: 0.5
+- coordinates: 0,25,2
+  domains:
+    a: TATCGTTGCATGAGGTA
+    b: GTATCTCACAGCGGTTT
+    c: CGCATTTTCTAGTTGAG
+    d: GCAGCCGGGCCCGAC
+    e: CTCACACGCTCTAAAAA
+    f: GGGGGGTCGGAATTTCG
+  grid: L3-ERT
+  id: I_random
+  nupack_file: L3-I_random
+  pil_file: L3-I
+  sensitivity: 0.85
+- coordinates: 0,25,2
+  domains:
+    a: GATGCCATATGTCAGAG
+    b: CACGATGCGATCACTGG
+    c: ATTCAGAGGAGAACCGT
+    d: GCACATCGCGAATCC
+    e: AGCGTTGGGTACCCATC
+    f: TCGGGGCACAGAGGGAC
+  grid: L3-ERT
+  id: I_GA
+  nupack_file: L3-I_GA
+  pil_file: L3-I
+  sensitivity: 0.85
+- coordinates: 1,28,33
+  domains:
+    a: AACGATGTGTATGTCCG
+    b: AGGGGACATGCAAAACA
+    c: CCACAGACGAGTTACCT
+    d: CACTCAATCCTTTTG
+    e: TCGCCATAGAGCAATAA
+    f: GACGGAGTTTACCGATT
+  grid: L3-ERT
+  id: J_random
+  nupack_file: L3-J_random
+  pil_file: L3-J
+  sensitivity: 0.85
+- coordinates: 1,28,33
+  domains:
+    a: CCCACTTTAATAGCTGC
+    b: AACGCCCGCAGTTTGGC
+    c: CATACCACTTGGACTGG
+    d: GGACTTGGTAATCAT
+    e: AAGGAACGTCTTCCCAT
+    f: ATCCTATACACTTTGGT
+  grid: L3-ERT
+  id: J_GA
+  nupack_file: L3-J_GA
+  pil_file: L3-J
+  sensitivity: 0.85
+- coordinates: 1,29,46
+  domains:
+    a: AGCCAAACTACGTTGCC
+    b: TACGCATATTAGAGCGC
+    c: AAGAATACCTGACGCAA
+    d: TGATGCATCTGGCCA
+    e: GTACCCCAAAGTCCGGA
+    f: ATTTACAGATGCTCTGA
+  grid: L3-ERT
+  id: K_random
+  nupack_file: L3-K_random
+  pil_file: L3-K
+  sensitivity: 0.85
+- coordinates: 1,29,46
+  domains:
+    a: CCGGGCCCTATGCCGGT
+    b: TAGGGTCTCCTTCTTAA
+    c: TATGTCGACCAAAGCTT
+    d: CAGATGCGGTTCTTA
+    e: GTTGATGTACATCGAAA
+    f: GTCGTATCTCGTTGACT
+  grid: L3-ERT
+  id: K_GA
+  nupack_file: L3-K_GA
+  pil_file: L3-K
+  sensitivity: 0.85
+- coordinates: 1,30,35
+  domains:
+    a: CAGATTCTCCCGTTTAA
+    b: CGTTCATGTGATTTTCG
+    c: ACGATGTTCGTGCGGTA
+    d: CCCCCCTATCTCGGC
+    e: AGTCCGCTAATGCCGGC
+    f: GCGTCTTACAACTCAGT
+  grid: L3-MSS
+  id: L_random
+  nupack_file: L3-L_random
+  pil_file: L3-L
+  sensitivity: 0.85
+- coordinates: 1,30,35
+  domains:
+    a: CATGTCCTTCCCTCCGT
+    b: TCGCGGCGCACAACAGC
+    c: TGACACTTACTTCAAAA
+    d: CCCCCCCCCCCCGGC
+    e: TAGAATTTATCGTTTAT
+    f: TTTGCGCAATAACTACT
+  grid: L3-MSS
+  id: L_GA
+  nupack_file: L3-L_GA
+  pil_file: L3-L
+  sensitivity: 0.85

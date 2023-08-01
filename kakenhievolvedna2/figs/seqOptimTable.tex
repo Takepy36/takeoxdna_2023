@@ -1,0 +1,43 @@
+
+\begin{table*}[h]
+\caption{\TODO{Sequences optim: Table best-ever res optim vs random} 5 runs per case. Coordinates: MSS=Mean Struct Size, ERT=Entropy Reaction Types. }
+\begin{center}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{cc| c|c|c|c|c|c|c|c|c|c|c|c|}
+\cline{3-14}
+& & A & B & C & D & E & F & G & H & I & J & K & L \\
+
+\cline{2-14}
+\multicolumn{1}{|c|}{ \multirow{2}{*}{\shortstack[c]{Domain-lvl.\\optimization}} } &
+Grid & L1-ERT & L1-ERT & L1-MSS & L1-MSS & L2-ERT & L2-ERT & L2-MSS & L2-MSS & L3-ERT & L3-ERT & L3-ERT & L3-MSS \\
+\multicolumn{1}{|c|}{} &
+Coordinates & 1,22,39 & 1,24,20 & 0,23,5 & 2,13,3 & 1,36,11 & 0,21,5 & 2,31,18 & 1,36,12 & 0,25,2 & 1,28,33 & 1,29,46 & 1,30,35 \\
+
+\cline{2-14}
+\multicolumn{1}{|c|}{ \multirow{2}{*}{\shortstack[c]{Prop. of overlaps\\(max struct. size 3)}} } &
+Random& $\mathbf{70.796}$ & $48.052$ & $\mathbf{57.143}$ & $\mathbf{43.966}$ & $22.857$ & $\mathbf{46.154}$ & $\mathbf{18.103}$ & $32.558$ & $69.388$ & $32.624$ & $61.409$ & $18.056$ \\
+\multicolumn{1}{|c|}{} &
+GA & $63.333$ & $\mathbf{65.625}$ & $\mathbf{57.143}$ & $42.553$ & $\mathbf{78.571}$ & $\mathbf{46.154}$ & $\mathbf{18.103}$ & $\mathbf{78.571}$ & $\mathbf{70.213}$ & $\mathbf{68.462}$ & $\mathbf{68.169}$ & $\mathbf{25.641}$ \\
+
+\cline{2-14}
+\multicolumn{1}{|c|}{ \multirow{2}{*}{\shortstack[c]{Prop. of overlaps\\(max struct. size 8)}} } &
+Random& $\mathbf{3.4206}$ & $\mathbf{0.30642}$ & $\mathbf{4.0481}$ & $\mathbf{0.025385}$ & $\mathbf{0.023117}$ & $0.15146$ & $\mathbf{0.0094553}$ & $\mathbf{0.14296}$ & $\mathbf{0.29705}$ & $\mathbf{0.013003}$ & $\mathbf{0.021727}$ & $0.031462$ \\
+\multicolumn{1}{|c|}{} &
+GA & $0.45631$ & $0.21685$ & $3.2801$ & $0.019575$ & $0.017715$ & $\mathbf{0.17016}$ & $\mathbf{0.0094553}$ & $0.11351$ & $0.16165$ & $0.0026326$ & $0.020983$ & $\mathbf{0.037092}$ \\
+
+\cline{2-14}
+\multicolumn{1}{|c|}{ \multirow{2}{*}{\shortstack[c]{Nr. of overlaps\\(max struct. size 8)}} } &
+Random& $9964$ & $298$ & $37$ & $92$ & $17$ & $12$ & $28$ & $21$ & $51$ & $72$ & $1126$ & $23$ \\
+\multicolumn{1}{|c|}{} &
+GA & $349$ & $178$ & $37$ & $103$ & $12$ & $12$ & $28$ & $14$ & $48$ & $236$ & $1545$ & $30$ \\
+
+\cline{2-14}
+\multicolumn{2}{|c|}{ \multirow{1}{*}{\shortstack[c]{Selected for further analyses}} }
+& Random & Random & Random & Random & Random & GA & GA & Random & Random & Random & Random & GA \\
+
+\cline{3-14}
+\end{tabular}
+}
+\end{center}
+\label{tab:sequenceOptim}
+\end{table*}

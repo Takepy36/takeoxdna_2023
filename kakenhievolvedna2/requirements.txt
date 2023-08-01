@@ -1,0 +1,17 @@
+mpmath>=0.19
+numpy>=1.21.1
+scipy>=1.6.0
+sympy>=1.2
+networkx>=2.6.2
+matplotlib>=3.0.0
+tqdm>=4.62.0
+colorama>=0.4.4
+psutil>=5.8.0
+parse>=1.19.0
+powerlaw>=1.5
+seaborn>=0.11.1
+graphviz>=0.17
+pydot>=1.4.2
+qdpy==0.1.0
+git+https://github.com/bad-ants-fleet/crnsimulator@v0.4
+git+https://github.com/leo-cazenille/peppercornenumerator.git

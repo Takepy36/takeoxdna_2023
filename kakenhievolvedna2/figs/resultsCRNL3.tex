@@ -1,0 +1,86 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{positioning,fit,matrix}
+\usepackage{todonotes}
+%\usepackage{scalefnt}
+
+%\tikzset{%
+%  textnode/.style     = {\sffamily font=\fontsize{10}{12.4}\selectfont},
+%}
+
+
+\begin{document}
+
+\sffamily%\sansmath
+%\scalefont{0.01}
+%\fontsize{8}{10.0}\selectfont
+
+
+\begin{tikzpicture}
+
+% L3
+\node[inner sep=0] (I) {\includegraphics[width=10cm]{../results/graphAnalyses50/I_random-overlap2.png}};
+\node[inner sep=0, below=0mm of I] (Icbar) {\includegraphics[width=10cm]{../results/graphAnalyses50/I_random-overlap2-cbar.png}};
+\node[inner sep=0, below=0mm of Icbar] (J) {\includegraphics[width=10cm]{../results/graphAnalyses50/J_random-overlap2.png}};
+\node[inner sep=0, below=0mm of J] (Jcbar) {\includegraphics[width=10cm]{../results/graphAnalyses50/J_random-overlap2-cbar.png}};
+\node[inner sep=0, below=0mm of Jcbar] (K) {\includegraphics[width=10cm]{../results/graphAnalyses50/K_random-overlap2.png}};
+\node[inner sep=0, below=0mm of K] (Kcbar) {\includegraphics[width=10cm]{../results/graphAnalyses50/K_random-overlap2-cbar.png}};
+\node[inner sep=0, below=0mm of Kcbar] (L) {\includegraphics[width=10cm]{../results/graphAnalyses50/L_GA-overlap2.png}};
+\node[inner sep=0, below=0mm of L] (Lcbar) {\includegraphics[width=10cm]{../results/graphAnalyses50/L_GA-overlap2-cbar.png}};
+
+
+% Titles
+\node[color=black,left=0.5mm of I,rotate=0,anchor=north,align=center,shift={(0.00,0.00)}] {\Large{I}};
+\node[color=black,left=0.5mm of J,rotate=0,anchor=north,align=center,shift={(0.00,0.00)}] {\Large{J}};
+\node[color=black,left=0.5mm of K,rotate=0,anchor=north,align=center,shift={(0.00,0.00)}] {\Large{K}};
+\node[color=black,left=0.5mm of L,rotate=0,anchor=north,align=center,shift={(0.00,0.00)}] {\Large{L}};
+
+
+%% L1
+%\node[inner sep=0] (baseline1) {\includegraphics[width=5cm]{plots/peppercorn-L1-meanStruct.pdf}};
+%\node[inner sep=0, right=0mm of baseline1] (baseline2) {\includegraphics[width=5cm]{plots/peppercorn-L1-entropyReactionTypes.pdf}};
+%%\node[inner sep=0, right=0mm of baseline2] (baseline3) {\includegraphics[width=5cm]{plots/nupack-L1-combined.pdf}};
+%
+%
+%% L2
+%\node[inner sep=0, below=0mm of baseline1] (alex1) {\includegraphics[width=5cm]{plots/peppercorn-L2-meanStruct.pdf}};
+%\node[inner sep=0, right=0mm of alex1] (alex2) {\includegraphics[width=5cm]{plots/peppercorn-L2-entropyReactionTypes.pdf}};
+%%\node[inner sep=0, right=0mm of alex2] (alex3) {\includegraphics[width=5cm]{plots/nupack-L2-combined.pdf}};
+%
+%
+%% L3
+%\node[inner sep=0, below=0mm of alex1] (tetra1) {\includegraphics[width=5cm]{plots/peppercorn-L3-meanStruct.pdf}};
+%\node[inner sep=0, right=0mm of tetra1] (tetra2) {\includegraphics[width=5cm]{plots/peppercorn-L3-entropyReactionTypes.pdf}};
+%%\node[inner sep=0, right=0mm of tetra2] (tetra3) {\includegraphics[width=5cm]{plots/nupack-L3-combined.pdf}};
+%
+%
+%% CBar
+%\node[inner sep=0, below=0mm of tetra1] (cbar1) {\includegraphics[width=5cm]{plots/peppercorn-cbar-meanStruct.pdf}};
+%\node[inner sep=0, right=0mm of cbar1] (cbar2) {\includegraphics[width=5cm]{plots/peppercorn-cbar-entropyReactionTypes.pdf}};
+%%\node[inner sep=0, right=0mm of cbar2] (cbar3) {\includegraphics[width=5cm]{plots/nupack-cbar-combined.pdf}};
+%
+%
+%% Titles
+%\node[color=black,above=5mm of baseline1,rotate=0,anchor=north,align=center,shift={(0.20,0.00)}] {Mean Struct. Size};
+%\node[color=black,above=5mm of baseline2,rotate=0,anchor=north,align=center,shift={(0.20,0.00)}] {Entropy React. Types};
+%%\node[color=black,above=5mm of baseline3,rotate=0,anchor=north,align=center,shift={(0.20,0.00)}] {Nupack Entropy Struct. Size};
+%
+%\node[color=black,above=1.5mm of baseline1,rotate=0,anchor=north,align=center,shift={(-1.60,0.00)}] {\tiny{$k=(2,3)$}};
+%\node[color=black,above=1.5mm of baseline1,rotate=0,anchor=north,align=center,shift={(0.20,0.00)}] {\tiny{$k=(4,5)$}};
+%\node[color=black,above=1.5mm of baseline1,rotate=0,anchor=north,align=center,shift={(2.00,0.00)}] {\tiny{$k=(6,7)$}};
+%\node[color=black,above=1.5mm of baseline2,rotate=0,anchor=north,align=center,shift={(-1.60,0.00)}] {\tiny{$k=(2,3)$}};
+%\node[color=black,above=1.5mm of baseline2,rotate=0,anchor=north,align=center,shift={(0.20,0.00)}] {\tiny{$k=(4,5)$}};
+%\node[color=black,above=1.5mm of baseline2,rotate=0,anchor=north,align=center,shift={(2.00,0.00)}] {\tiny{$k=(6,7)$}};
+%%\node[color=black,above=1.5mm of baseline3,rotate=0,anchor=north,align=center,shift={(-1.60,0.00)}] {\tiny{$k=(2,3)$}};
+%%\node[color=black,above=1.5mm of baseline3,rotate=0,anchor=north,align=center,shift={(0.20,0.00)}] {\tiny{$k=(4,5)$}};
+%%\node[color=black,above=1.5mm of baseline3,rotate=0,anchor=north,align=center,shift={(2.00,0.00)}] {\tiny{$k=(6,7)$}};
+%
+%\node[color=black,left=3mm of baseline1,rotate=90,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{L1}};
+%\node[color=black,left=3mm of alex1,rotate=90,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{L2}};
+%\node[color=black,left=3mm of tetra1,rotate=90,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{L3}};
+%
+
+
+\end{tikzpicture}
+
+\end{document}

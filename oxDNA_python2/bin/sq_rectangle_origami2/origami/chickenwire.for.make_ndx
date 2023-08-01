@@ -1,0 +1,772 @@
+del 0 - 30
+!a C1' C2'  C3' C4' O4' C5'  P  O1P  O2P  O3'  O5' H*
+name 0 BASE
+ri 337 448 & 0
+name 1 H0B8L0
+ri 338 447 & 0
+name 2 H0B9L0
+ri 339 446 & 0
+name 3 H0B10L0
+ri 340 445 & 0
+name 4 H0B11L0
+ri 341 444 & 0
+name 5 H0B12L0
+ri 342 443 & 0
+name 6 H0B13L0
+ri 343 442 & 0
+name 7 H0B14L0
+ri 344 441 & 0
+name 8 H0B15L0
+ri 345 440 & 0
+name 9 H0B16L0
+ri 346 439 & 0
+name 10 H0B17L0
+ri 347 438 & 0
+name 11 H0B18L0
+ri 348 437 & 0
+name 12 H0B19L0
+ri 349 436 & 0
+name 13 H0B20L0
+ri 350 435 & 0
+name 14 H0B21L0
+ri 351 434 & 0
+name 15 H0B22L0
+ri 352 433 & 0
+name 16 H0B23L0
+ri 353 416 & 0
+name 17 H0B24L0
+ri 354 415 & 0
+name 18 H0B25L0
+ri 355 414 & 0
+name 19 H0B26L0
+ri 356 413 & 0
+name 20 H0B27L0
+ri 357 412 & 0
+name 21 H0B28L0
+ri 358 411 & 0
+name 22 H0B29L0
+ri 359 410 & 0
+name 23 H0B30L0
+ri 360 409 & 0
+name 24 H0B31L0
+ri 361 408 & 0
+name 25 H0B32L0
+ri 362 407 & 0
+name 26 H0B33L0
+ri 363 406 & 0
+name 27 H0B34L0
+ri 364 405 & 0
+name 28 H0B35L0
+ri 365 404 & 0
+name 29 H0B36L0
+ri 366 403 & 0
+name 30 H0B37L0
+ri 367 402 & 0
+name 31 H0B38L0
+ri 368 401 & 0
+name 32 H0B39L0
+ri 369 400 & 0
+name 33 H0B40L0
+ri 370 399 & 0
+name 34 H0B41L0
+ri 371 398 & 0
+name 35 H0B42L0
+ri 372 397 & 0
+name 36 H0B43L0
+ri 373 396 & 0
+name 37 H0B44L0
+ri 374 395 & 0
+name 38 H0B45L0
+ri 375 394 & 0
+name 39 H0B46L0
+ri 376 393 & 0
+name 40 H0B47L0
+ri 377 392 & 0
+name 41 H0B48L0
+ri 378 391 & 0
+name 42 H0B49L0
+ri 379 390 & 0
+name 43 H0B50L0
+ri 380 389 & 0
+name 44 H0B51L0
+ri 381 388 & 0
+name 45 H0B52L0
+ri 382 387 & 0
+name 46 H0B53L0
+ri 383 386 & 0
+name 47 H0B54L0
+ri 384 385 & 0
+name 48 H0B55L0
+ri 336 417 & 0
+name 49 H1B8L0
+ri 335 418 & 0
+name 50 H1B9L0
+ri 334 419 & 0
+name 51 H1B10L0
+ri 333 420 & 0
+name 52 H1B11L0
+ri 332 421 & 0
+name 53 H1B12L0
+ri 331 422 & 0
+name 54 H1B13L0
+ri 330 423 & 0
+name 55 H1B14L0
+ri 329 424 & 0
+name 56 H1B15L0
+ri 328 425 & 0
+name 57 H1B16L0
+ri 327 426 & 0
+name 58 H1B17L0
+ri 326 427 & 0
+name 59 H1B18L0
+ri 325 428 & 0
+name 60 H1B19L0
+ri 324 429 & 0
+name 61 H1B20L0
+ri 323 430 & 0
+name 62 H1B21L0
+ri 322 431 & 0
+name 63 H1B22L0
+ri 321 432 & 0
+name 64 H1B23L0
+ri 320 449 & 0
+name 65 H1B24L0
+ri 319 450 & 0
+name 66 H1B25L0
+ri 318 451 & 0
+name 67 H1B26L0
+ri 317 452 & 0
+name 68 H1B27L0
+ri 316 453 & 0
+name 69 H1B28L0
+ri 315 454 & 0
+name 70 H1B29L0
+ri 314 455 & 0
+name 71 H1B30L0
+ri 313 456 & 0
+name 72 H1B31L0
+ri 312 457 & 0
+name 73 H1B32L0
+ri 311 458 & 0
+name 74 H1B33L0
+ri 310 459 & 0
+name 75 H1B34L0
+ri 309 460 & 0
+name 76 H1B35L0
+ri 308 461 & 0
+name 77 H1B36L0
+ri 307 462 & 0
+name 78 H1B37L0
+ri 306 463 & 0
+name 79 H1B38L0
+ri 305 464 & 0
+name 80 H1B39L0
+ri 304 497 & 0
+name 81 H1B40L0
+ri 303 498 & 0
+name 82 H1B41L0
+ri 302 499 & 0
+name 83 H1B42L0
+ri 301 500 & 0
+name 84 H1B43L0
+ri 300 501 & 0
+name 85 H1B44L0
+ri 299 502 & 0
+name 86 H1B45L0
+ri 298 503 & 0
+name 87 H1B46L0
+ri 297 504 & 0
+name 88 H1B47L0
+ri 296 505 & 0
+name 89 H1B48L0
+ri 295 506 & 0
+name 90 H1B49L0
+ri 294 507 & 0
+name 91 H1B50L0
+ri 293 508 & 0
+name 92 H1B51L0
+ri 292 509 & 0
+name 93 H1B52L0
+ri 291 510 & 0
+name 94 H1B53L0
+ri 290 511 & 0
+name 95 H1B54L0
+ri 289 512 & 0
+name 96 H1B55L0
+ri 241 544 & 0
+name 97 H2B8L0
+ri 242 543 & 0
+name 98 H2B9L0
+ri 243 542 & 0
+name 99 H2B10L0
+ri 244 541 & 0
+name 100 H2B11L0
+ri 245 540 & 0
+name 101 H2B12L0
+ri 246 539 & 0
+name 102 H2B13L0
+ri 247 538 & 0
+name 103 H2B14L0
+ri 248 537 & 0
+name 104 H2B15L0
+ri 249 536 & 0
+name 105 H2B16L0
+ri 250 535 & 0
+name 106 H2B17L0
+ri 251 534 & 0
+name 107 H2B18L0
+ri 252 533 & 0
+name 108 H2B19L0
+ri 253 532 & 0
+name 109 H2B20L0
+ri 254 531 & 0
+name 110 H2B21L0
+ri 255 530 & 0
+name 111 H2B22L0
+ri 256 529 & 0
+name 112 H2B23L0
+ri 257 480 & 0
+name 113 H2B24L0
+ri 258 479 & 0
+name 114 H2B25L0
+ri 259 478 & 0
+name 115 H2B26L0
+ri 260 477 & 0
+name 116 H2B27L0
+ri 261 476 & 0
+name 117 H2B28L0
+ri 262 475 & 0
+name 118 H2B29L0
+ri 263 474 & 0
+name 119 H2B30L0
+ri 264 473 & 0
+name 120 H2B31L0
+ri 265 472 & 0
+name 121 H2B32L0
+ri 266 471 & 0
+name 122 H2B33L0
+ri 267 470 & 0
+name 123 H2B34L0
+ri 268 469 & 0
+name 124 H2B35L0
+ri 269 468 & 0
+name 125 H2B36L0
+ri 270 467 & 0
+name 126 H2B37L0
+ri 271 466 & 0
+name 127 H2B38L0
+ri 272 465 & 0
+name 128 H2B39L0
+ri 273 496 & 0
+name 129 H2B40L0
+ri 274 495 & 0
+name 130 H2B41L0
+ri 275 494 & 0
+name 131 H2B42L0
+ri 276 493 & 0
+name 132 H2B43L0
+ri 277 492 & 0
+name 133 H2B44L0
+ri 278 491 & 0
+name 134 H2B45L0
+ri 279 490 & 0
+name 135 H2B46L0
+ri 280 489 & 0
+name 136 H2B47L0
+ri 281 488 & 0
+name 137 H2B48L0
+ri 282 487 & 0
+name 138 H2B49L0
+ri 283 486 & 0
+name 139 H2B50L0
+ri 284 485 & 0
+name 140 H2B51L0
+ri 285 484 & 0
+name 141 H2B52L0
+ri 286 483 & 0
+name 142 H2B53L0
+ri 287 482 & 0
+name 143 H2B54L0
+ri 288 481 & 0
+name 144 H2B55L0
+ri 240 513 & 0
+name 145 H3B8L0
+ri 239 514 & 0
+name 146 H3B9L0
+ri 238 515 & 0
+name 147 H3B10L0
+ri 237 516 & 0
+name 148 H3B11L0
+ri 236 517 & 0
+name 149 H3B12L0
+ri 235 518 & 0
+name 150 H3B13L0
+ri 234 519 & 0
+name 151 H3B14L0
+ri 233 520 & 0
+name 152 H3B15L0
+ri 232 521 & 0
+name 153 H3B16L0
+ri 231 522 & 0
+name 154 H3B17L0
+ri 230 523 & 0
+name 155 H3B18L0
+ri 229 524 & 0
+name 156 H3B19L0
+ri 228 525 & 0
+name 157 H3B20L0
+ri 227 526 & 0
+name 158 H3B21L0
+ri 226 527 & 0
+name 159 H3B22L0
+ri 225 528 & 0
+name 160 H3B23L0
+ri 224 545 & 0
+name 161 H3B24L0
+ri 223 546 & 0
+name 162 H3B25L0
+ri 222 547 & 0
+name 163 H3B26L0
+ri 221 548 & 0
+name 164 H3B27L0
+ri 220 549 & 0
+name 165 H3B28L0
+ri 219 550 & 0
+name 166 H3B29L0
+ri 218 551 & 0
+name 167 H3B30L0
+ri 217 552 & 0
+name 168 H3B31L0
+ri 216 553 & 0
+name 169 H3B32L0
+ri 215 554 & 0
+name 170 H3B33L0
+ri 214 555 & 0
+name 171 H3B34L0
+ri 213 556 & 0
+name 172 H3B35L0
+ri 212 557 & 0
+name 173 H3B36L0
+ri 211 558 & 0
+name 174 H3B37L0
+ri 210 559 & 0
+name 175 H3B38L0
+ri 209 560 & 0
+name 176 H3B39L0
+ri 208 593 & 0
+name 177 H3B40L0
+ri 207 594 & 0
+name 178 H3B41L0
+ri 206 595 & 0
+name 179 H3B42L0
+ri 205 596 & 0
+name 180 H3B43L0
+ri 204 597 & 0
+name 181 H3B44L0
+ri 203 598 & 0
+name 182 H3B45L0
+ri 202 599 & 0
+name 183 H3B46L0
+ri 201 600 & 0
+name 184 H3B47L0
+ri 200 601 & 0
+name 185 H3B48L0
+ri 199 602 & 0
+name 186 H3B49L0
+ri 198 603 & 0
+name 187 H3B50L0
+ri 197 604 & 0
+name 188 H3B51L0
+ri 196 605 & 0
+name 189 H3B52L0
+ri 195 606 & 0
+name 190 H3B53L0
+ri 194 607 & 0
+name 191 H3B54L0
+ri 193 608 & 0
+name 192 H3B55L0
+ri 145 640 & 0
+name 193 H4B8L0
+ri 146 639 & 0
+name 194 H4B9L0
+ri 147 638 & 0
+name 195 H4B10L0
+ri 148 637 & 0
+name 196 H4B11L0
+ri 149 636 & 0
+name 197 H4B12L0
+ri 150 635 & 0
+name 198 H4B13L0
+ri 151 634 & 0
+name 199 H4B14L0
+ri 152 633 & 0
+name 200 H4B15L0
+ri 153 632 & 0
+name 201 H4B16L0
+ri 154 631 & 0
+name 202 H4B17L0
+ri 155 630 & 0
+name 203 H4B18L0
+ri 156 629 & 0
+name 204 H4B19L0
+ri 157 628 & 0
+name 205 H4B20L0
+ri 158 627 & 0
+name 206 H4B21L0
+ri 159 626 & 0
+name 207 H4B22L0
+ri 160 625 & 0
+name 208 H4B23L0
+ri 161 576 & 0
+name 209 H4B24L0
+ri 162 575 & 0
+name 210 H4B25L0
+ri 163 574 & 0
+name 211 H4B26L0
+ri 164 573 & 0
+name 212 H4B27L0
+ri 165 572 & 0
+name 213 H4B28L0
+ri 166 571 & 0
+name 214 H4B29L0
+ri 167 570 & 0
+name 215 H4B30L0
+ri 168 569 & 0
+name 216 H4B31L0
+ri 169 568 & 0
+name 217 H4B32L0
+ri 170 567 & 0
+name 218 H4B33L0
+ri 171 566 & 0
+name 219 H4B34L0
+ri 172 565 & 0
+name 220 H4B35L0
+ri 173 564 & 0
+name 221 H4B36L0
+ri 174 563 & 0
+name 222 H4B37L0
+ri 175 562 & 0
+name 223 H4B38L0
+ri 176 561 & 0
+name 224 H4B39L0
+ri 177 592 & 0
+name 225 H4B40L0
+ri 178 591 & 0
+name 226 H4B41L0
+ri 179 590 & 0
+name 227 H4B42L0
+ri 180 589 & 0
+name 228 H4B43L0
+ri 181 588 & 0
+name 229 H4B44L0
+ri 182 587 & 0
+name 230 H4B45L0
+ri 183 586 & 0
+name 231 H4B46L0
+ri 184 585 & 0
+name 232 H4B47L0
+ri 185 584 & 0
+name 233 H4B48L0
+ri 186 583 & 0
+name 234 H4B49L0
+ri 187 582 & 0
+name 235 H4B50L0
+ri 188 581 & 0
+name 236 H4B51L0
+ri 189 580 & 0
+name 237 H4B52L0
+ri 190 579 & 0
+name 238 H4B53L0
+ri 191 578 & 0
+name 239 H4B54L0
+ri 192 577 & 0
+name 240 H4B55L0
+ri 144 609 & 0
+name 241 H5B8L0
+ri 143 610 & 0
+name 242 H5B9L0
+ri 142 611 & 0
+name 243 H5B10L0
+ri 141 612 & 0
+name 244 H5B11L0
+ri 140 613 & 0
+name 245 H5B12L0
+ri 139 614 & 0
+name 246 H5B13L0
+ri 138 615 & 0
+name 247 H5B14L0
+ri 137 616 & 0
+name 248 H5B15L0
+ri 136 617 & 0
+name 249 H5B16L0
+ri 135 618 & 0
+name 250 H5B17L0
+ri 134 619 & 0
+name 251 H5B18L0
+ri 133 620 & 0
+name 252 H5B19L0
+ri 132 621 & 0
+name 253 H5B20L0
+ri 131 622 & 0
+name 254 H5B21L0
+ri 130 623 & 0
+name 255 H5B22L0
+ri 129 624 & 0
+name 256 H5B23L0
+ri 128 641 & 0
+name 257 H5B24L0
+ri 127 642 & 0
+name 258 H5B25L0
+ri 126 643 & 0
+name 259 H5B26L0
+ri 125 644 & 0
+name 260 H5B27L0
+ri 124 645 & 0
+name 261 H5B28L0
+ri 123 646 & 0
+name 262 H5B29L0
+ri 122 647 & 0
+name 263 H5B30L0
+ri 121 648 & 0
+name 264 H5B31L0
+ri 120 649 & 0
+name 265 H5B32L0
+ri 119 650 & 0
+name 266 H5B33L0
+ri 118 651 & 0
+name 267 H5B34L0
+ri 117 652 & 0
+name 268 H5B35L0
+ri 116 653 & 0
+name 269 H5B36L0
+ri 115 654 & 0
+name 270 H5B37L0
+ri 114 655 & 0
+name 271 H5B38L0
+ri 113 656 & 0
+name 272 H5B39L0
+ri 112 689 & 0
+name 273 H5B40L0
+ri 111 690 & 0
+name 274 H5B41L0
+ri 110 691 & 0
+name 275 H5B42L0
+ri 109 692 & 0
+name 276 H5B43L0
+ri 108 693 & 0
+name 277 H5B44L0
+ri 107 694 & 0
+name 278 H5B45L0
+ri 106 695 & 0
+name 279 H5B46L0
+ri 105 696 & 0
+name 280 H5B47L0
+ri 104 697 & 0
+name 281 H5B48L0
+ri 103 698 & 0
+name 282 H5B49L0
+ri 102 699 & 0
+name 283 H5B50L0
+ri 101 700 & 0
+name 284 H5B51L0
+ri 100 701 & 0
+name 285 H5B52L0
+ri 99 702 & 0
+name 286 H5B53L0
+ri 98 703 & 0
+name 287 H5B54L0
+ri 97 704 & 0
+name 288 H5B55L0
+ri 49 736 & 0
+name 289 H6B8L0
+ri 50 735 & 0
+name 290 H6B9L0
+ri 51 734 & 0
+name 291 H6B10L0
+ri 52 733 & 0
+name 292 H6B11L0
+ri 53 732 & 0
+name 293 H6B12L0
+ri 54 731 & 0
+name 294 H6B13L0
+ri 55 730 & 0
+name 295 H6B14L0
+ri 56 729 & 0
+name 296 H6B15L0
+ri 57 728 & 0
+name 297 H6B16L0
+ri 58 727 & 0
+name 298 H6B17L0
+ri 59 726 & 0
+name 299 H6B18L0
+ri 60 725 & 0
+name 300 H6B19L0
+ri 61 724 & 0
+name 301 H6B20L0
+ri 62 723 & 0
+name 302 H6B21L0
+ri 63 722 & 0
+name 303 H6B22L0
+ri 64 721 & 0
+name 304 H6B23L0
+ri 65 672 & 0
+name 305 H6B24L0
+ri 66 671 & 0
+name 306 H6B25L0
+ri 67 670 & 0
+name 307 H6B26L0
+ri 68 669 & 0
+name 308 H6B27L0
+ri 69 668 & 0
+name 309 H6B28L0
+ri 70 667 & 0
+name 310 H6B29L0
+ri 71 666 & 0
+name 311 H6B30L0
+ri 72 665 & 0
+name 312 H6B31L0
+ri 73 664 & 0
+name 313 H6B32L0
+ri 74 663 & 0
+name 314 H6B33L0
+ri 75 662 & 0
+name 315 H6B34L0
+ri 76 661 & 0
+name 316 H6B35L0
+ri 77 660 & 0
+name 317 H6B36L0
+ri 78 659 & 0
+name 318 H6B37L0
+ri 79 658 & 0
+name 319 H6B38L0
+ri 80 657 & 0
+name 320 H6B39L0
+ri 81 688 & 0
+name 321 H6B40L0
+ri 82 687 & 0
+name 322 H6B41L0
+ri 83 686 & 0
+name 323 H6B42L0
+ri 84 685 & 0
+name 324 H6B43L0
+ri 85 684 & 0
+name 325 H6B44L0
+ri 86 683 & 0
+name 326 H6B45L0
+ri 87 682 & 0
+name 327 H6B46L0
+ri 88 681 & 0
+name 328 H6B47L0
+ri 89 680 & 0
+name 329 H6B48L0
+ri 90 679 & 0
+name 330 H6B49L0
+ri 91 678 & 0
+name 331 H6B50L0
+ri 92 677 & 0
+name 332 H6B51L0
+ri 93 676 & 0
+name 333 H6B52L0
+ri 94 675 & 0
+name 334 H6B53L0
+ri 95 674 & 0
+name 335 H6B54L0
+ri 96 673 & 0
+name 336 H6B55L0
+ri 48 705 & 0
+name 337 H7B8L0
+ri 47 706 & 0
+name 338 H7B9L0
+ri 46 707 & 0
+name 339 H7B10L0
+ri 45 708 & 0
+name 340 H7B11L0
+ri 44 709 & 0
+name 341 H7B12L0
+ri 43 710 & 0
+name 342 H7B13L0
+ri 42 711 & 0
+name 343 H7B14L0
+ri 41 712 & 0
+name 344 H7B15L0
+ri 40 713 & 0
+name 345 H7B16L0
+ri 39 714 & 0
+name 346 H7B17L0
+ri 38 715 & 0
+name 347 H7B18L0
+ri 37 716 & 0
+name 348 H7B19L0
+ri 36 717 & 0
+name 349 H7B20L0
+ri 35 718 & 0
+name 350 H7B21L0
+ri 34 719 & 0
+name 351 H7B22L0
+ri 33 720 & 0
+name 352 H7B23L0
+ri 32 737 & 0
+name 353 H7B24L0
+ri 31 738 & 0
+name 354 H7B25L0
+ri 30 739 & 0
+name 355 H7B26L0
+ri 29 740 & 0
+name 356 H7B27L0
+ri 28 741 & 0
+name 357 H7B28L0
+ri 27 742 & 0
+name 358 H7B29L0
+ri 26 743 & 0
+name 359 H7B30L0
+ri 25 744 & 0
+name 360 H7B31L0
+ri 24 745 & 0
+name 361 H7B32L0
+ri 23 746 & 0
+name 362 H7B33L0
+ri 22 747 & 0
+name 363 H7B34L0
+ri 21 748 & 0
+name 364 H7B35L0
+ri 20 749 & 0
+name 365 H7B36L0
+ri 19 750 & 0
+name 366 H7B37L0
+ri 18 751 & 0
+name 367 H7B38L0
+ri 17 752 & 0
+name 368 H7B39L0
+ri 16 753 & 0
+name 369 H7B40L0
+ri 15 754 & 0
+name 370 H7B41L0
+ri 14 755 & 0
+name 371 H7B42L0
+ri 13 756 & 0
+name 372 H7B43L0
+ri 12 757 & 0
+name 373 H7B44L0
+ri 11 758 & 0
+name 374 H7B45L0
+ri 10 759 & 0
+name 375 H7B46L0
+ri 9 760 & 0
+name 376 H7B47L0
+ri 8 761 & 0
+name 377 H7B48L0
+ri 7 762 & 0
+name 378 H7B49L0
+ri 6 763 & 0
+name 379 H7B50L0
+ri 5 764 & 0
+name 380 H7B51L0
+ri 4 765 & 0
+name 381 H7B52L0
+ri 3 766 & 0
+name 382 H7B53L0
+ri 2 767 & 0
+name 383 H7B54L0
+ri 1 768 & 0
+name 384 H7B55L0
+quit

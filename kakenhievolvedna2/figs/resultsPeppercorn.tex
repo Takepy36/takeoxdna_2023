@@ -1,0 +1,213 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{positioning,fit,matrix}
+\usepackage{todonotes}
+%\usepackage{scalefnt}
+
+%\tikzset{%
+%  textnode/.style     = {\sffamily font=\fontsize{10}{12.4}\selectfont},
+%}
+
+\begin{document}
+
+\sffamily%\sansmath
+%\scalefont{0.01}
+%\fontsize{8}{10.0}\selectfont
+
+\begin{tikzpicture}
+
+
+
+
+% L1
+\node[inner sep=0] (baseline1) {\includegraphics[width=6cm]{plots/peppercorn-L1-meanStruct.pdf}};
+\node[inner sep=0, right=0mm of baseline1] (baseline2) {\includegraphics[width=6cm]{plots/peppercorn-L1-entropyReactionTypes.pdf}};
+%\node[inner sep=0, right=0mm of baseline2] (baseline3) {\includegraphics[width=6cm]{plots/nupack-L1-combined.pdf}};
+
+
+% L2
+\node[inner sep=0, below=0mm of baseline1] (alex1) {\includegraphics[width=6cm]{plots/peppercorn-L2-meanStruct.pdf}};
+\node[inner sep=0, right=0mm of alex1] (alex2) {\includegraphics[width=6cm]{plots/peppercorn-L2-entropyReactionTypes.pdf}};
+%\node[inner sep=0, right=0mm of alex2] (alex3) {\includegraphics[width=6cm]{plots/nupack-L2-combined.pdf}};
+
+
+% L3
+\node[inner sep=0, below=0mm of alex1] (tetra1) {\includegraphics[width=6cm]{plots/peppercorn-L3-meanStruct.pdf}};
+\node[inner sep=0, right=0mm of tetra1] (tetra2) {\includegraphics[width=6cm]{plots/peppercorn-L3-entropyReactionTypes.pdf}};
+%\node[inner sep=0, right=0mm of tetra2] (tetra3) {\includegraphics[width=6cm]{plots/nupack-L3-combined.pdf}};
+
+
+% CBar
+\node[inner sep=0, below=0mm of tetra1] (cbar1) {\includegraphics[width=6cm]{plots/peppercorn-cbar-meanStruct.pdf}};
+\node[inner sep=0, right=0mm of cbar1] (cbar2) {\includegraphics[width=6cm]{plots/peppercorn-cbar-entropyReactionTypes.pdf}};
+%\node[inner sep=0, right=0mm of cbar2] (cbar3) {\includegraphics[width=6cm]{plots/nupack-cbar-combined.pdf}};
+
+
+% Titles
+\node[color=black,above=5mm of baseline1,rotate=0,anchor=north,align=center,shift={(0.20,0.00)}] {Mean Struct. Size};
+\node[color=black,above=5mm of baseline2,rotate=0,anchor=north,align=center,shift={(0.20,0.00)}] {Entropy React. Types};
+%\node[color=black,above=5mm of baseline3,rotate=0,anchor=north,align=center,shift={(0.20,0.00)}] {Nupack Entropy Struct. Size};
+
+\node[color=black,above=1.5mm of baseline1,rotate=0,anchor=north,align=center,shift={(-1.60,0.00)}] {\tiny{$k=(2,3)$}};
+\node[color=black,above=1.5mm of baseline1,rotate=0,anchor=north,align=center,shift={(0.20,0.00)}] {\tiny{$k=(4,5)$}};
+\node[color=black,above=1.5mm of baseline1,rotate=0,anchor=north,align=center,shift={(2.00,0.00)}] {\tiny{$k=(6,7)$}};
+\node[color=black,above=1.5mm of baseline2,rotate=0,anchor=north,align=center,shift={(-1.60,0.00)}] {\tiny{$k=(2,3)$}};
+\node[color=black,above=1.5mm of baseline2,rotate=0,anchor=north,align=center,shift={(0.20,0.00)}] {\tiny{$k=(4,5)$}};
+\node[color=black,above=1.5mm of baseline2,rotate=0,anchor=north,align=center,shift={(2.00,0.00)}] {\tiny{$k=(6,7)$}};
+%\node[color=black,above=1.5mm of baseline3,rotate=0,anchor=north,align=center,shift={(-1.60,0.00)}] {\tiny{$k=(2,3)$}};
+%\node[color=black,above=1.5mm of baseline3,rotate=0,anchor=north,align=center,shift={(0.20,0.00)}] {\tiny{$k=(4,5)$}};
+%\node[color=black,above=1.5mm of baseline3,rotate=0,anchor=north,align=center,shift={(2.00,0.00)}] {\tiny{$k=(6,7)$}};
+
+\node[color=black,left=3mm of baseline1,rotate=90,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{L1}};
+\node[color=black,left=3mm of alex1,rotate=90,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{L2}};
+\node[color=black,left=3mm of tetra1,rotate=90,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{L3}};
+
+
+
+
+
+%
+%% L1
+%\node[inner sep=0] (baseline1) {\includegraphics[width=6cm]{plots/peppercorn-L1-meanStruct.pdf}};
+%\node[inner sep=0, right=0mm of baseline1] (baseline2) {\includegraphics[width=6cm]{plots/peppercorn-L1-entropyReactionTypes.pdf}};
+%
+%
+%% L2
+%\node[inner sep=0, below=0mm of baseline1] (alex1) {\includegraphics[width=6cm]{plots/peppercorn-L2-meanStruct.pdf}};
+%\node[inner sep=0, right=0mm of alex1] (alex2) {\includegraphics[width=6cm]{plots/peppercorn-L2-entropyReactionTypes.pdf}};
+%
+%
+%% L3
+%\node[inner sep=0, below=0mm of alex1] (tetra1) {\includegraphics[width=6cm]{plots/peppercorn-L3-meanStruct.pdf}};
+%\node[inner sep=0, right=0mm of tetra1] (tetra2) {\includegraphics[width=6cm]{plots/peppercorn-L3-entropyReactionTypes.pdf}};
+%
+%
+%% CBar
+%\node[inner sep=0, below=0mm of tetra1] (cbar1) {\includegraphics[width=6cm]{plots/peppercorn-cbar-meanStruct.pdf}};
+%\node[inner sep=0, right=0mm of cbar1] (cbar2) {\includegraphics[width=6cm]{plots/peppercorn-cbar-entropyReactionTypes.pdf}};
+%
+%
+%% Titles
+%\node[color=black,above=5mm of baseline1,rotate=0,anchor=north,align=center,shift={(0.20,0.00)}] {Mean Struct. Size};
+%\node[color=black,above=5mm of baseline2,rotate=0,anchor=north,align=center,shift={(0.20,0.00)}] {Entropy React. Types};
+%
+%\node[color=black,above=1.5mm of baseline1,rotate=0,anchor=north,align=center,shift={(-1.60,0.00)}] {\tiny{$k=(2,3)$}};
+%\node[color=black,above=1.5mm of baseline1,rotate=0,anchor=north,align=center,shift={(0.20,0.00)}] {\tiny{$k=(4,5)$}};
+%\node[color=black,above=1.5mm of baseline1,rotate=0,anchor=north,align=center,shift={(2.00,0.00)}] {\tiny{$k=(6,7)$}};
+%\node[color=black,above=1.5mm of baseline2,rotate=0,anchor=north,align=center,shift={(-1.60,0.00)}] {\tiny{$k=(2,3)$}};
+%\node[color=black,above=1.5mm of baseline2,rotate=0,anchor=north,align=center,shift={(0.20,0.00)}] {\tiny{$k=(4,5)$}};
+%\node[color=black,above=1.5mm of baseline2,rotate=0,anchor=north,align=center,shift={(2.00,0.00)}] {\tiny{$k=(6,7)$}};
+%
+%\node[color=black,left=3mm of baseline1,rotate=90,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{L1}};
+%\node[color=black,left=3mm of alex1,rotate=90,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{L2}};
+%\node[color=black,left=3mm of tetra1,rotate=90,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{L3}};
+%
+
+
+%
+%% L1
+%\node[inner sep=0, below=5mm of cbar1] (baseline3) {\includegraphics[width=6cm]{plots/nupack-L1-meanStruct.pdf}};
+%\node[inner sep=0, right=0mm of baseline3] (baseline4) {\includegraphics[width=6cm]{plots/nupack-L1-entropyReactionTypes.pdf}};
+%
+%
+%% L2
+%\node[inner sep=0, below=0mm of baseline3] (alex3) {\includegraphics[width=6cm]{plots/nupack-L2-meanStruct.pdf}};
+%\node[inner sep=0, right=0mm of alex3] (alex4) {\includegraphics[width=6cm]{plots/nupack-L2-entropyReactionTypes.pdf}};
+%
+%
+%% L3
+%\node[inner sep=0, below=0mm of alex3] (tetra3) {\includegraphics[width=6cm]{plots/nupack-L3-meanStruct.pdf}};
+%\node[inner sep=0, right=0mm of tetra3] (tetra4) {\includegraphics[width=6cm]{plots/nupack-L3-entropyReactionTypes.pdf}};
+%
+%
+%% CBar
+%\node[inner sep=0, below=0mm of tetra3] (cbar3) {\includegraphics[width=6cm]{plots/nupack-cbar-meanStruct.pdf}};
+%\node[inner sep=0, right=0mm of cbar3] (cbar4) {\includegraphics[width=6cm]{plots/nupack-cbar-entropyReactionTypes.pdf}};
+%
+%
+%% Titles
+%\node[color=black,above=5mm of baseline3,rotate=0,anchor=north,align=center,shift={(0.20,0.00)}] {Nupack Entropy Struct. Size};
+%\node[color=black,above=5mm of baseline4,rotate=0,anchor=north,align=center,shift={(0.20,0.00)}] {Nupack Entropy Struct. Size};
+%
+%\node[color=black,above=1.5mm of baseline3,rotate=0,anchor=north,align=center,shift={(-1.60,0.00)}] {\tiny{$k=(2,3)$}};
+%\node[color=black,above=1.5mm of baseline3,rotate=0,anchor=north,align=center,shift={(0.20,0.00)}] {\tiny{$k=(4,5)$}};
+%\node[color=black,above=1.5mm of baseline3,rotate=0,anchor=north,align=center,shift={(2.00,0.00)}] {\tiny{$k=(6,7)$}};
+%\node[color=black,above=1.5mm of baseline4,rotate=0,anchor=north,align=center,shift={(-1.60,0.00)}] {\tiny{$k=(2,3)$}};
+%\node[color=black,above=1.5mm of baseline4,rotate=0,anchor=north,align=center,shift={(0.20,0.00)}] {\tiny{$k=(4,5)$}};
+%\node[color=black,above=1.5mm of baseline4,rotate=0,anchor=north,align=center,shift={(2.00,0.00)}] {\tiny{$k=(6,7)$}};
+%
+%\node[color=black,left=3mm of baseline3,rotate=90,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{L1}};
+%\node[color=black,left=3mm of alex3,rotate=90,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{L2}};
+%\node[color=black,left=3mm of tetra3,rotate=90,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{L3}};
+
+
+%
+%% L1
+%\node[inner sep=0, below=5mm of cbar1] (baseline3) {\includegraphics[width=6cm]{plots/nupack-L1-combined.pdf}};
+%
+%% L2
+%\node[inner sep=0, below=0mm of baseline3] (alex3) {\includegraphics[width=6cm]{plots/nupack-L2-combined.pdf}};
+%
+%% L3
+%\node[inner sep=0, below=0mm of alex3] (tetra3) {\includegraphics[width=6cm]{plots/nupack-L3-combined.pdf}};
+%
+%% CBar
+%\node[inner sep=0, below=0mm of tetra3] (cbar3) {\includegraphics[width=6cm]{plots/nupack-cbar-combined.pdf}};
+%
+%% Titles
+%\node[color=black,above=5mm of baseline3,rotate=0,anchor=north,align=center,shift={(0.20,0.00)}] {Nupack Entropy Struct. Size};
+%
+%\node[color=black,above=1.5mm of baseline3,rotate=0,anchor=north,align=center,shift={(-1.60,0.00)}] {\tiny{$k=(2,3)$}};
+%\node[color=black,above=1.5mm of baseline3,rotate=0,anchor=north,align=center,shift={(0.20,0.00)}] {\tiny{$k=(4,5)$}};
+%\node[color=black,above=1.5mm of baseline3,rotate=0,anchor=north,align=center,shift={(2.00,0.00)}] {\tiny{$k=(6,7)$}};
+%
+%\node[color=black,left=3mm of baseline3,rotate=90,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{L1}};
+%\node[color=black,left=3mm of alex3,rotate=90,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{L2}};
+%\node[color=black,left=3mm of tetra3,rotate=90,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{L3}};
+%
+
+
+
+
+%
+%% L1
+%\node[inner sep=0, below=5mm of cbar1] (baseline3) {\includegraphics[width=6cm]{plots/peppercorn-L1-meanStructWRTreactionTypes.pdf}};
+%\node[inner sep=0, right=0mm of baseline3] (baseline4) {\includegraphics[width=6cm]{plots/peppercorn-L1-mostCommonSize.pdf}};
+%
+%
+%% L2
+%\node[inner sep=0, below=0mm of baseline3] (alex3) {\includegraphics[width=6cm]{plots/peppercorn-L2-meanStructWRTreactionTypes.pdf}};
+%\node[inner sep=0, right=0mm of alex3] (alex4) {\includegraphics[width=6cm]{plots/peppercorn-L2-mostCommonSize.pdf}};
+%
+%
+%% L3
+%\node[inner sep=0, below=0mm of alex3] (tetra3) {\includegraphics[width=6cm]{plots/peppercorn-L3-meanStructWRTreactionTypes.pdf}};
+%\node[inner sep=0, right=0mm of tetra3] (tetra4) {\includegraphics[width=6cm]{plots/peppercorn-L3-mostCommonSize.pdf}};
+%
+%
+%% CBar
+%\node[inner sep=0, below=0mm of tetra3] (cbar3) {\includegraphics[width=6cm]{plots/peppercorn-cbar-meanStructWRTreactionTypes.pdf}};
+%\node[inner sep=0, right=0mm of cbar3] (cbar4) {\includegraphics[width=6cm]{plots/peppercorn-cbar-mostCommonSize.pdf}};
+%
+%
+%% Titles
+%\node[color=black,above=5mm of baseline3,rotate=0,anchor=north,align=center,shift={(0.20,0.00)}] {Mean Struct. Size};
+%\node[color=black,above=5mm of baseline4,rotate=0,anchor=north,align=center,shift={(0.20,0.00)}] {Most Common Size};
+%
+%\node[color=black,above=1.5mm of baseline3,rotate=0,anchor=north,align=center,shift={(-1.60,0.00)}] {\tiny{$k=(2,3)$}};
+%\node[color=black,above=1.5mm of baseline3,rotate=0,anchor=north,align=center,shift={(0.20,0.00)}] {\tiny{$k=(4,5)$}};
+%\node[color=black,above=1.5mm of baseline3,rotate=0,anchor=north,align=center,shift={(2.00,0.00)}] {\tiny{$k=(6,7)$}};
+%\node[color=black,above=1.5mm of baseline4,rotate=0,anchor=north,align=center,shift={(-1.60,0.00)}] {\tiny{$k=(2,3)$}};
+%\node[color=black,above=1.5mm of baseline4,rotate=0,anchor=north,align=center,shift={(0.20,0.00)}] {\tiny{$k=(4,5)$}};
+%\node[color=black,above=1.5mm of baseline4,rotate=0,anchor=north,align=center,shift={(2.00,0.00)}] {\tiny{$k=(6,7)$}};
+%
+%\node[color=black,left=3mm of baseline3,rotate=90,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{L1}};
+%\node[color=black,left=3mm of alex3,rotate=90,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{L2}};
+%\node[color=black,left=3mm of tetra3,rotate=90,anchor=north,align=center,shift={(0.0,0.0)}] {\textbf{L3}};
+%
+
+
+
+\end{tikzpicture}
+
+\end{document}
