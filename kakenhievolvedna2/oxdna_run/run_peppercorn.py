@@ -4,7 +4,7 @@
 # # 構造を得る
 # peppercorn入力ファイルを作り、peppercornを利用して構造を得る。
 
-# In[51]:
+# In[1]:
 
 
 import subprocess as sp
@@ -18,7 +18,7 @@ importlib.reload(main)
 importlib.reload(make_filepath)
 
 
-# In[49]:
+# In[2]:
 
 
 def run_sp_with_log(executable,logfilepath):
@@ -26,7 +26,7 @@ def run_sp_with_log(executable,logfilepath):
     sp.run(executable,stdout=logfile,stderr=logfile)
 
 
-# In[1]:
+# In[3]:
 
 
 def write_list_to_txt(lst,path):
@@ -35,12 +35,13 @@ def write_list_to_txt(lst,path):
         f.write(contents)
 
 
-# In[2]:
+# In[4]:
 
 
 def make_peppercorn_input(dirpath,length_a,length_b,strands_list,filename_num):
     #example:[['a', 'a', 'b*', 'b*'], ['a*', 'a*', 'b', 'b']]
-    filepath = dirpath+"/"+filename_num+"_peppercorn_input.pil"
+    #filepath = dirpath+"/"+filename_num+"_peppercorn_input.pil"
+    filepath = dirpath+"peppercorn_input.pil"
     with open (filepath,"w") as f:
         f.write("length a = " + str(length_a) + "\n")
         f.write("length b = " + str(length_b) + "\n")
@@ -55,7 +56,7 @@ def make_peppercorn_input(dirpath,length_a,length_b,strands_list,filename_num):
     return filepath
 
 
-# In[3]:
+# In[5]:
 
 
 def run_peppercorn(input_filepath,output_filepath,max_complex_size,
@@ -70,7 +71,7 @@ def run_peppercorn(input_filepath,output_filepath,max_complex_size,
     # sp.run(executable,stdout=logfile,stderr=logfile)
 
 
-# In[6]:
+# In[7]:
 
 
 def make_untrusted_strands_files(untrusted_strands_list,
@@ -95,13 +96,20 @@ def make_untrusted_strands_files(untrusted_strands_list,
         
         peppercorn_output_path = os.path.join(
             sets_path,
-            str(untrusted_strands_index[list_index])+"_peppercorn_output.pil")
+            str("peppercorn_output.pil"))
+            #str(untrusted_strands_index[list_index])+"_peppercorn_output.pil")
         
         run_peppercorn(peppercorn_input_path,peppercorn_output_path,max_complex_size)
         
         untrusted_peppercorn_outputs.append(peppercorn_output_path)
         
     return untrusted_peppercorn_outputs
+
+
+# In[ ]:
+
+
+
 
 
 # In[ ]:

@@ -6,8 +6,10 @@ unused/
 /kakenhievolvedna2/sim_result_peppercorn*/
 /kakenhievolvedna2/results/
 /kakenhievolvedna2/logs/
+/kakenhievolvedna2/2022*/
 /kakenhievolvedna2/oxdna_run/__pycache__/
-/kakenhievolvedna2/oxdna_run/2022-12-19/
+/kakenhievolvedna2/oxdna_run/2022*/
+/kakenhievolvedna2/oxdna_run/2023*/
 /kakenhievolvedna2/oxdna_run/size/
 /kakenhievolvedna2/oxdna_run/unused/
 /kakenhievolvedna2/oxdna_run/*.csv

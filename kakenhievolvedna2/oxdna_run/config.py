@@ -1,6 +1,6 @@
 
 #oxdna input config
-oxdna_input = "input_relax_1e5"#debag
+oxdna_input = "input_relax_1e2"#debag
 
 #result directory
 results_dir = "../results"
@@ -9,6 +9,6 @@ results_dir = "../results"
 
 poolnum = 1
 
-oxDNA_dir = "../../oxDNA"
+oxDNA_dir = "../../oxDNA_python2"
 
-result_parent_dir = "2023-08-01"
+#result_parent_dir = "2023-07-31"

@@ -8,7 +8,7 @@
 # 
 # https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.BaggingRegressor.html#sklearn.ensemble.BaggingRegressor
 
-# In[60]:
+# In[28]:
 
 
 import pandas as pd
@@ -19,8 +19,6 @@ import os
 import pickle
 import datetime
 import importlib
-import config as cfg
-importlib.reload(cfg)
 import make_filepath as mpath
 importlib.reload(mpath)
 import use_pickle
@@ -38,7 +36,7 @@ from scipy.stats import linregress
 from sklearn.model_selection import train_test_split
 
 
-# In[61]:
+# In[29]:
 
 
 from sklearn.svm import SVR
@@ -47,14 +45,21 @@ from sklearn.ensemble import BaggingRegressor
 from sklearn.model_selection import GridSearchCV
 
 
-# In[1]:
+# In[54]:
 
 
-def make_df_for_learning(dirpath):
-    df = pd.read_csv(os.path.join(dirpath,"strands.csv"))
+# dirpath = "2022-12-19/20230723_1529/loop0"
+# make_df_for_learning(dirpath).iloc[:1]
+
+
+# In[63]:
+
+
+def make_df_for_learning(source_dirpath):
+    df = pd.read_csv(os.path.join(source_dirpath,"strands.csv"))
     df_groupby = df.groupby("pilfile_path")
     #df["pilfile_path"].values
-    df_groupby.get_group(df["pilfile_path"].values[0])#.loc[:,"strand_num"])
+    df_groupby.get_group(df["pilfile_path"].values[0])
     #strand_set_numは理論上、0 ~ 255まで存在する。
     path_strands_binary = []
     for i, data in enumerate(df_groupby):
@@ -65,7 +70,11 @@ def make_df_for_learning(dirpath):
             arr[255-num] = "1"
             #strand_list.append[test_df.loc[:,"strand_set"]]
         #print(test_df.loc[:,"strand_set"])
-        energy_path = os.path.dirname(data[0]) + "/energy_log.csv"
+        energy_path = os.path.join(
+            source_dirpath,
+            os.path.dirname(
+                test_df.loc[:,"pilfile_path"].values[0]),
+            "energy_log.csv")
         oxdna_energy_mean = pd.read_csv(energy_path).loc[:,"potential_energy"].mean
 
 
@@ -90,7 +99,7 @@ def make_df_for_learning(dirpath):
             )
     binary_strands_energy_data = pd.DataFrame(path_strands_binary)
     binary_strands_energy_data.columns = ["path","strands","code_num","code_num2","oxdna_energy_mean"]
-    binary_strands_energy_data.to_csv(os.path.join(cfg.result_parent_dir,"binary_strands_energy_data.csv"),index=False)
+    binary_strands_energy_data.to_csv(os.path.join(source_dirpath,"binary_strands_energy_data.csv"),index=False)
     df01 = pd.DataFrame([])
     for lst in binary_strands_energy_data.loc[:,"code_num"].values:
         #display(pd.DataFrame(lst).T)
@@ -99,18 +108,11 @@ def make_df_for_learning(dirpath):
         df_binary_strands_energy = pd.concat([df_binary_strands_energy,binary_strands_energy_data.loc[:,"strands"]],axis=1)
         df_binary_strands_energy = df_binary_strands_energy.dropna()
         
-    use_pickle.dump_to_pickle(dirpath,[df_binary_strands_energy],["df_binary_strands_energy"])
+    use_pickle.dump_to_pickle(source_dirpath,[df_binary_strands_energy],["df_binary_strands_energy"])
     return df_binary_strands_energy
 
 
-# In[63]:
-
-
-# dirpath = "2022-12-19/20230723_1529/loop0"
-# make_df_for_learning(dirpath).iloc[:1]
-
-
-# In[78]:
+# In[55]:
 
 
 def make_datasets(dirpath,df_binary_strands_energy):
@@ -140,7 +142,7 @@ def make_datasets(dirpath,df_binary_strands_energy):
     return x_train,y_train,x_test,y_test
 
 
-# In[65]:
+# In[56]:
 
 
 def show_history(history):
@@ -149,7 +151,7 @@ def show_history(history):
     print(hist.tail())
 
 
-# In[66]:
+# In[57]:
 
 
 def make_svm(dirpath,param_filename,gamma,C,epsilon,
@@ -177,7 +179,7 @@ def make_svm(dirpath,param_filename,gamma,C,epsilon,
     return svr
 
 
-# In[2]:
+# In[58]:
 
 
 def make_svm_result(dirpath,train_filename,test_filename,model,x_train,y_train,x_test,y_test):
@@ -209,7 +211,7 @@ def make_svm_result(dirpath,train_filename,test_filename,model,x_train,y_train,x
 
 
 
-# In[68]:
+# In[59]:
 
 
 def make_optimized_svm(dirpath,Xtrain,ytrain,Xtest,ytest,bagging=False):
@@ -276,11 +278,11 @@ def make_optimized_svm(dirpath,Xtrain,ytrain,Xtest,ytest,bagging=False):
     return regressionmodel
 
 
-# In[4]:
+# In[60]:
 
 
-def make_model(datasets_dirpath,results_dirpath):
-    df_binary_strands_energy = make_df_for_learning(datasets_dirpath)
+def make_model(source_dirpath,results_dirpath):
+    df_binary_strands_energy = make_df_for_learning(source_dirpath)
     x_train,y_train,x_test,y_test = make_datasets(results_dirpath,df_binary_strands_energy)
     #regressionmodel,bagging_regressionmodel = make_optimized_svm(dirpath,x_train,y_train,x_test,y_test)
     regressionmodel = make_optimized_svm(results_dirpath,x_train,y_train,x_test,y_test)
@@ -293,7 +295,20 @@ def make_model(datasets_dirpath,results_dirpath):
     use_pickle.dump_to_pickle(results_dirpath,[svm_train_result,svm_test_result],["svm_train_result","svm_test_result"])
 
 
-# In[6]:
+# In[61]:
+
+
+# source_dirpath = "2023-07-31"
+# df = pd.read_csv(os.path.join(source_dirpath,"strands.csv"))
+
+
+# In[65]:
+
+
+#make_model("2023-07-31","2023-07-31/20230725_2356/loop0")
+
+
+# In[38]:
 
 
 def make_model_for_loop(datasets_dirpath,results_dirpath):
@@ -312,7 +327,7 @@ def make_model_for_loop(datasets_dirpath,results_dirpath):
     use_pickle.dump_to_pickle(results_dirpath,[svm_train_result,svm_test_result],["svm_train_result","svm_test_result"])
 
 
-# In[89]:
+# In[ ]:
 
 
 #use_pickle.read_pickle("2022-12-19/test","x_train.p")

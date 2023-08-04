@@ -1,25 +1,23 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[3]:
+# In[2]:
 
 
 import datetime
 import os
 import importlib
-import config as cfg
-importlib.reload(cfg)
 
 
-# In[3]:
+# In[4]:
 
 
-def make_datetime_folder():
+def make_datetime_folder(parent_dir):
     dt = str(datetime.datetime.now().strftime('%Y%m%d_%H%M'))
-    parent_dir = os.path.join(cfg.result_parent_dir,dt)
-    if not os.path.exists(parent_dir):
-        os.mkdir(parent_dir)
-    return parent_dir
+    path = os.path.join(parent_dir,dt)
+    if not os.path.exists(path):
+        os.mkdir(path)
+    return path
 
 
 # In[2]:

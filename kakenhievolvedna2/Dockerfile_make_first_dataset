@@ -58,7 +58,6 @@ RUN apt install -y gcc
 
 # Install peppercorn
 RUN python3.9 -m pip install --upgrade pip
-RUN pip3 install traceback
 RUN pip3 install vtk pybind11 tqdm colorama psutil
 #RUN pip3 install pyvista
 RUN pip3 install parse powerlaw networkx 
@@ -69,8 +68,9 @@ RUN pip3 install matplotlib seaborn graphviz pydot
 RUN pip3 install mpmath numpy scipy sympy
 RUN git clone https://github.com/leo-cazenille/peppercornenumerator.git
 #pip3 for qdpy
-RUN pip3 install psutil scipy pandas scikit-learn typing_extentions PyYAML deprecation sortedcollections
-RUN git clone develop https://gitlab.com/leo.cazenille/qdpy.git
+# RUN git clone -b develop https://gitlab.com/leo.cazenille/qdpy.git
+# RUN cd /qdpy && pip3 install -U -r requirements.txt
+RUN pip3 --no-cache-dir install -U numpy pandas tqdm git+https://gitlab.com/leo.cazenille/qdpy.git@develop
 #RUN pip install -U pip setuptools
 
 RUN wget https://bootstrap.pypa.io/pip/2.7/get-pip.py

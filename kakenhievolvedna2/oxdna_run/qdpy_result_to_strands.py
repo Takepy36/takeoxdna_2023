@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
+# In[ ]:
 
 
 import os
@@ -12,8 +12,6 @@ from qdpy import algorithms, containers, benchmarks, plots
 import pickle
 import numpy as np
 import importlib
-import config as cfg
-importlib.reload(cfg)
 import matplotlib.pyplot as plt
 import seaborn as sns
 import use_pickle

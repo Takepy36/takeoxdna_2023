@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[3]:
+# In[1]:
 
 
 import os
@@ -9,11 +9,9 @@ import pandas as pd
 import glob
 import re
 import importlib
-import config as cfg
-importlib.reload(cfg)
 
 
-# In[4]:
+# In[9]:
 
 
 def replace_strand(contents):
@@ -27,12 +25,12 @@ def replace_strand(contents):
 # replace_strand(test_data)
 
 
-# In[5]:
+# In[27]:
 
 
-def get_strands(filepath):
+def get_strands_data(filepath):
     strands = []
-    with open(filepath,"r") as f:
+    with open(filepath,"r") as f:#pilファイルを開く
         data = f.readlines()
         
         start = 0
@@ -51,22 +49,25 @@ def get_strands(filepath):
                 contents = list(filter(None,re.findall(r'(a\*?|b\*?)\s',line)))
                 ID = replace_strand(" ".join(contents))
                 num = int(ID,4)
-                
-                strands.append([strand,ID,num,contents,filepath])
+                #わざわざこのように書くのは、後から親ディレクトリ名が変わった場合に対応するため。
+                filepath_data = os.path.join(
+                    os.path.basename(os.path.dirname(filepath)),
+                    os.path.basename(filepath))
+                strands.append([strand,ID,num,contents,filepath_data])
     #print("🧬", strands)
     return strands
 #filepath = "/Users/takepy/takeoxdna/kakenhievolvedna2/oxdna_run/sim_result_peppercorn_2022-10-12_21_05_15180339/outputPepperCorn20220728042950_16216627496182999931957018208784722064_0.pil"  
 #get_strands(filepath)
 
 
-# In[6]:
+# In[28]:
 
 
 def get_all_strands(pilfile_path_list):
     strands_df = pd.DataFrame([])
     strands_lst = []
     for pilfile_path in pilfile_path_list:
-        strands = get_strands(pilfile_path)
+        strands = get_strands_data(pilfile_path)
         df = pd.DataFrame(strands)
         df.columns = ["strand_num","strand_set_id","strand_set_num","strand_set","pilfile_path"]
         df.to_csv(pilfile_path.replace("pil","csv"),index=None)
@@ -74,7 +75,7 @@ def get_all_strands(pilfile_path_list):
     return strands_df
 
 
-# In[16]:
+# In[29]:
 
 
 def run_all(results_path_lst,strands_csv_path):
@@ -84,22 +85,22 @@ def run_all(results_path_lst,strands_csv_path):
     return strands_df
 
 
-# In[10]:
+# In[30]:
 
 
-def main():
-    results_path_lst = glob.glob(os.path.join(cfg.result_parent_dir,"sim_result_peppercorn*","*.pil"))
-    run_all(results_path_lst,cfg.result_parent_dir)
+# def main():
+#     results_path_lst = glob.glob(os.path.join("2023-07-31","sim_result_peppercorn*","*.pil"))
+#     run_all(results_path_lst,"2023-07-31/strands.csv")
 
 
-# In[14]:
+# In[1]:
 
 
 # #test
 # main()
 
 
-# In[1]:
+# In[32]:
 
 
 if __name__ == "__main__":

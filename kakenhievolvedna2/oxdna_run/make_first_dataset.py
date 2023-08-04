@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[3]:
+# In[10]:
 
 
 import os
@@ -12,7 +12,6 @@ import datetime
 import subprocess as sp
 import pathlib
 import time
-import datetime
 import config as cfg
 #import make_mean as mm
 import importlib
@@ -21,6 +20,8 @@ importlib.reload(cfg)
 import send_mail
 importlib.reload(send_mail)
 import traceback
+import make_filepath
+importlib.reload(make_filepath)
 
 
 # In[4]:
@@ -115,7 +116,7 @@ def send_make_dataset_mail(flag,error_message,start_datetime,end_datetime,elapse
         send_mail.program_complete_mail(mail_title = "🐍【実行エラー】 Pythonプログラム 【make_first_dataset】 でエラーが発生しました🐍",mailtext = text)
 
 
-# In[13]:
+# In[12]:
 
 
 def sim_all_results_dir(all_results_dir = cfg.results_dir):
@@ -130,9 +131,10 @@ def sim_all_results_dir(all_results_dir = cfg.results_dir):
         empty_dir_list = []
         num_of_results_path = len(results_path_list)
         
-        parent_dir = str(datetime.date.today())            
-        if not os.path.exists(parent_dir):
-            os.makedirs(parent_dir)
+        # parent_dir = str(datetime.date.today())            
+        # if not os.path.exists(parent_dir):
+        #     os.makedirs(parent_dir)
+        parent_dir = make_filepath.make_datetime_folder(".")
 
         for index, results_dir_path in enumerate(results_path_list):
             results_dir_name = os.path.basename(results_dir_path)
