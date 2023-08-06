@@ -1,95 +1,59 @@
-#This Dockerfile runs "revive_peppercorn_pil.py" by ENTRYPOINT.
 FROM ubuntu:22.04
-RUN apt update
 RUN apt-get update
+RUN apt-get -y upgrade
 RUN apt-get install -y wget
-RUN DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confold -y install tzdata
-RUN apt -y install build-essential libbz2-dev libdb-dev \
-    libreadline-dev libffi-dev libgdbm-dev liblzma-dev \
-    libncursesw5-dev libsqlite3-dev libssl-dev \
-    uuid-dev tk-dev
-    #zlib1g-dev
+RUN apt-get install -y libbz2-dev
+RUN apt -y install libssl-dev libffi-dev
+RUN apt-get install xz-utils
+
+RUN \
+    apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -yqq graphviz git \
+    libtiff5-dev libjpeg-turbo8-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev
+
+RUN mkdir -p /home/user
+
+RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+RUN echo "Asia/Tokyo" > /etc/timezone
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=Asia/Tokyo
+# RUN apt install -y python3-pip --fix-missing
+# RUN apt-get -y install libjpeg-dev
+# RUN apt -y install libjpeg-dev
+RUN apt-get -y install python-tk 
+# RUN apt-get -y install libgl1-mesa-dev
+RUN apt install -y subversion 
+RUN apt-get install pkg-config 
+RUN apt install -y gcc 
 RUN apt-get -y install \
     clang \
     clang-format \
     make \
     cmake
 
+
 RUN wget https://www.python.org/ftp/python/3.9.2/Python-3.9.2.tar.xz && tar xJf Python-3.9.2.tar.xz
 RUN cd Python-3.9.2 && ./configure && make && make install
 
 
-#RUN apt-get install -y python3.9
-RUN apt install -y python3-pip --fix-missing
-RUN DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confold -y upgrade
-#RUN DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confold -y install tzdata
-RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
-RUN echo "Asia/Tokyo" > /etc/timezone
-
-
-#FROM lcazenille/ubuntupysshgcc
-
-ARG DEBIAN_FRONTEND=noninteractive
-ENV TZ=Asia/Tokyo
-
- RUN \
-     #apt-get update && \
-    apt-get install -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -yqq graphviz git \
-    libtiff5-dev libjpeg-turbo8-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev
-
-RUN mkdir -p /home/user
-
-# Download repositories
-RUN cd /home/user 
-#&& git clone https://bitbucket.org/leo-cazenille/kakenhievolvedna.git
-
-RUN pip install --upgrade cython && pip3 install --upgrade cython
-
-#RUN apt-get update
-#RUN apt-get -y install libjpeg-dev
-RUN apt -y install libjpeg-dev
-RUN apt-get -y install python-tk 
-RUN apt-get -y install libgl1-mesa-dev
-RUN apt install -y subversion 
-RUN apt-get install pkg-config 
-RUN apt install -y gcc 
-# RUN apt-get -y install \
-#     clang \
-#     clang-format \
-#     make \
-#     cmake
-
-# Install peppercorn
-# RUN python3.9 -m pip install --upgrade pip
-# RUN pip3 install vtk pybind11 pyvista tqdm colorama psutil 
-# RUN pip3 install parse powerlaw networkx matplotlib==2.2.4 seaborn graphviz pydot
-# RUN pip3 install -U qdpy==0.1.2.1
-# RUN pip3 install mpmath==0.19 numpy scipy sympy==1.2
-# RUN pip3 install scikit-learn
-# RUN git clone https://github.com/leo-cazenille/peppercornenumerator.git
-
-# RUN wget https://bootstrap.pypa.io/pip/2.7/get-pip.py
-# RUN python2 get-pip.py
-# RUN python2 -m pip install setuptools
-# RUN python2 -m pip install networkx==2.2 pyparsing mpmath==0.19 numpy scipy sympy==1.2 matplotlib==2.2.4
-# RUN cd /peppercornenumerator && python2 setup.py install
 
 # Install peppercorn
 RUN python3.9 -m pip install --upgrade pip
 RUN pip3 install vtk pybind11 tqdm colorama psutil
-#RUN pip3 install pyvista
 RUN pip3 install parse powerlaw networkx 
 #RUN pip3 install matplotlib==2.2.4 seaborn graphviz pydot
 RUN pip3 install matplotlib seaborn graphviz pydot
-#RUN pip3 install -U qdpy==0.1.2.1
 #RUN pip3 install mpmath==0.19 numpy scipy sympy==1.2
 RUN pip3 install mpmath numpy scipy sympy
 RUN git clone https://github.com/leo-cazenille/peppercornenumerator.git
-#pip3 for qdpy
-RUN pip3 install psutil scipy pandas scikit-learn typing_extentions PyYAML deprecation sortedcollections
-RUN git clone develop https://gitlab.com/leo.cazenille/qdpy.git
-#RUN pip install -U pip setuptools
+# RUN pip3 install -U sklearn
+RUN pip3 install -U scikit-learn
+#RUN pip3 install pyvista
 
+#pip3 for qdpy
+#RUN pip3 install -U qdpy==0.1.2.1
+RUN pip3 --no-cache-dir install -U numpy pandas tqdm git+https://gitlab.com/leo.cazenille/qdpy.git@develop
+#RUN pip install -U pip setuptools
+RUN apt update; apt install -y python2.7
 RUN wget https://bootstrap.pypa.io/pip/2.7/get-pip.py
 RUN python2 get-pip.py
 RUN python2 -m pip install setuptools
@@ -97,31 +61,5 @@ RUN python2 -m pip install networkx==2.2 pyparsing mpmath==0.19 numpy scipy symp
 RUN cd /peppercornenumerator && python2 setup.py install
 
 ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:/usr/local/lib/python3.9/dist-packages/vtk
-#RUN \
-#    pip3 install -U -r /home/user/kakenhievolvedna/requirements.tx
-# Install nupack
-# COPY nupack3.2.2.tar.gz /
 
-# RUN tar xvf nupack3.2.2.tar.gz
-# RUN cd nupack3.2.2
-# RUN mkdir build && cd build
-# RUN cmake ..
-# RUN make -j 20
-# RUN make install
-
-
-# Prepare for entrypoint execution
-#CMD ["/bin/bash"]
-
-#ENTRYPOINT cd /home/user/kakenhievolvedna2/oxdna_run ; /usr/bin/python3.7 -u /home/user/kakenhievolvedna2/oxdna_run/get_output_pilfile.py
-#ENTRYPOINT cd /home/user/kakenhievolvedna2 ; ./scripts/runAllExpes.sh
-ENTRYPOINT cd home/user/kakenhievolvedna2/oxdna_run; /usr/local/bin/python3 -u /home/user/kakenhievolvedna2/oxdna_run/revive_peppercorn_pil.py
-
-
-#CMD ["1000", "normal"]
-
-# MODELINE	"{{{1
-# vim:expandtab:softtabstop=4:shiftwidth=4:fileencoding=utf-8
-# vim:foldmethod=marker
-
-#コンテナから出ても継続されるようにentrypointを設定する。コンテナには入らない
+ENTRYPOINT home/user/kakenhievolvedna2/revive_peppercorn_pil.sh

@@ -20,7 +20,7 @@ ENV TZ=Asia/Tokyo
 # RUN apt-get -y install libjpeg-dev
 # RUN apt -y install libjpeg-dev
 RUN apt-get -y install python-tk 
-# RUN apt-get -y install libgl1-mesa-dev
+#RUN apt-get -y install libgl1-mesa-dev
 RUN apt install -y subversion 
 RUN apt-get install pkg-config 
 RUN apt install -y gcc 
@@ -62,3 +62,5 @@ RUN cd /peppercornenumerator && python2 setup.py install
 
 ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:/usr/local/lib/python3.9/dist-packages/vtk
 
+
+ENTRYPOINT home/user/kakenhievolvedna2/test_loop.sh 
