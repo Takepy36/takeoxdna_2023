@@ -4,6 +4,7 @@
 *.log
 *.out
 *.ipynb
+unused/
 kakenhievolvedna_2020/
 /kakenhievolvedna2/oxdna_run/unused/
 /kakenhievolvedna2/sim_result_peppercorn*/

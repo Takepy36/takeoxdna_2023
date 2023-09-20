@@ -1,0 +1,8 @@
+ERROR Too many complexes enumerated! (364)
+Traceback (most recent call last):
+  File "build/bdist.macosx-12.5-x86_64/egg/peppercornenumerator/enumerator.py", line 422, in enumerate
+    do_enumerate()
+  File "build/bdist.macosx-12.5-x86_64/egg/peppercornenumerator/enumerator.py", line 409, in do_enumerate
+    len(self._E) + len(self._T) + len(self._S))
+PolymerizationError: Too many complexes enumerated! (364)
+ERROR Polymerization error; gracefully exiting...

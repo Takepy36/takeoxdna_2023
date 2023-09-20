@@ -1,0 +1,20 @@
+WARNING: Double stem count in Loop() Object. b* (0, 1) (0, 2) set([(0, 1)])
+WARNING: Double stem count in Loop() Object. b* (2, 2) (2, 3) set([(2, 2)])
+WARNING: Double stem count in Loop() Object. b* (2, 2) (2, 3) set([(2, 2)])
+WARNING: Double stem count in Loop() Object. b* (0, 1) (0, 2) set([(0, 1)])
+WARNING: Double stem count in Loop() Object. b* (0, 1) (0, 2) set([(0, 1)])
+WARNING: Double stem count in Loop() Object. b* (2, 2) (2, 3) set([(2, 2)])
+WARNING: Double stem count in Loop() Object. b* (2, 2) (2, 3) set([(2, 2)])
+WARNING: Double stem count in Loop() Object. b* (0, 1) (0, 2) set([(0, 1)])
+WARNING: Double stem count in Loop() Object. b* (0, 1) (0, 2) set([(0, 1)])
+WARNING: Double stem count in Loop() Object. b* (3, 2) (3, 3) set([(3, 2)])
+WARNING: Double stem count in Loop() Object. b* (3, 2) (3, 3) set([(3, 2)])
+WARNING: Double stem count in Loop() Object. b* (0, 1) (0, 2) set([(0, 1)])
+ERROR Too many complexes enumerated! (216)
+Traceback (most recent call last):
+  File "build/bdist.macosx-12.5-x86_64/egg/peppercornenumerator/enumerator.py", line 422, in enumerate
+    do_enumerate()
+  File "build/bdist.macosx-12.5-x86_64/egg/peppercornenumerator/enumerator.py", line 409, in do_enumerate
+    len(self._E) + len(self._T) + len(self._S))
+PolymerizationError: Too many complexes enumerated! (216)
+ERROR Polymerization error; gracefully exiting...

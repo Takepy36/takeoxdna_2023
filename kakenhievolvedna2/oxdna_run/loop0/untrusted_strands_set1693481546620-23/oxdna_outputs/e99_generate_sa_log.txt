@@ -1,0 +1,11 @@
+## Found single strand of 27 bases
+## Found single strand of 27 bases
+## Found single strand of 25 bases
+## nstrands, nnucl =  3 79
+## Adding single strand of 27 bases
+##  done line 1 / 3, now at 27/79
+## Adding single strand of 27 bases
+##  done line 2 / 3, now at 54/79
+## Adding single strand of 25 bases
+##  done line 3 / 3, now at 79/79
+## ALL DONE. just generated dat file and topology file

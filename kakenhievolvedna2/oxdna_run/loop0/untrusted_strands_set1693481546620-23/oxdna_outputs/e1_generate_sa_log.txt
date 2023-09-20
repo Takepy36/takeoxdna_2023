@@ -1,0 +1,5 @@
+## Found single strand of 26 bases
+## nstrands, nnucl =  1 26
+## Adding single strand of 26 bases
+##  done line 1 / 1, now at 26/26
+## ALL DONE. just generated dat file and topology file

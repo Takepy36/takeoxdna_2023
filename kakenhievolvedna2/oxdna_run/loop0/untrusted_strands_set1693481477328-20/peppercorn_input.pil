@@ -1,0 +1,9 @@
+length a = 6
+length b = 7
+s0 = a a a b @ initial 1.0 M
+s1 = a a* b a @ initial 1.0 M
+s2 = a a* a* b* @ initial 1.0 M
+s3 = a* a* b a* @ initial 1.0 M
+s4 = a* a* b* b @ initial 1.0 M
+s5 = a* b* a a* @ initial 1.0 M
+s6 = b* b b* b @ initial 1.0 M
