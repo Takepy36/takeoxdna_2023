@@ -1,8 +1,0 @@
-INFO: chimera debag :  './sim_result_peppercorn_2022-12-19_22_53_06838116/e6_lastconf.dat.pdb'
-INFO: tracking particle 0
-INFO: setting cdm to 0
-INFO: Output printed on './sim_result_peppercorn_2022-12-19_22_53_06838116/e6_lastconf.dat.pdb'
-INFO: Chimera instructions printed to ./chimera.com './sim_result_peppercorn_2022-12-19_22_53_06838116/e6_lastconf.dat.pdb'
-('debag output : ', './sim_result_peppercorn_2022-12-19_22_53_06838116/e6_lastconf.dat.pdb')
-('base.py debag filename : ', './sim_result_peppercorn_2022-12-19_22_53_06838116/e6_lastconf.dat.pdb')
-('base.py debag chimera_file : ', './sim_result_peppercorn_2022-12-19_22_53_06838116/e6_lastconf')

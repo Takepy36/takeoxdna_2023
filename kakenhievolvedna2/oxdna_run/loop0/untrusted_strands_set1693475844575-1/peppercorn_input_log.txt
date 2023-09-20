@@ -1,8 +1,0 @@
-WARNING: Double stem count in Loop() Object. a* (0, 0) (0, 1) set([(0, 0)])
-WARNING: Double stem count in Loop() Object. a* (0, 2) (0, 3) set([(0, 2)])
-WARNING: Double stem count in Loop() Object. a* (0, 2) (0, 3) set([(0, 2)])
-WARNING: Double stem count in Loop() Object. a* (0, 0) (0, 1) set([(0, 0)])
-WARNING: Double stem count in Loop() Object. a (0, 1) (0, 0) set([(0, 1)])
-WARNING: Double stem count in Loop() Object. a* (0, 0) (0, 1) set([(0, 0)])
-WARNING: Double stem count in Loop() Object. a (0, 3) (0, 2) set([(0, 3)])
-WARNING: Double stem count in Loop() Object. a* (0, 2) (0, 3) set([(0, 2)])

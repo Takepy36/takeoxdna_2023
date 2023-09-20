@@ -1,8 +1,0 @@
-INFO: chimera debag :  'loop0/untrusted_strands_set1693481546620-23/oxdna_outputs/e414_lastconf.dat.pdb'
-INFO: tracking particle 0
-INFO: setting cdm to 0
-('debag output : ', 'loop0/untrusted_strands_set1693481546620-23/oxdna_outputs/e414_lastconf.dat.pdb')
-('base.py debag filename : ', 'loop0/untrusted_strands_set1693481546620-23/oxdna_outputs/e414_lastconf.dat.pdb')
-('base.py debag chimera_file : ', 'loop0/untrusted_strands_set1693481546620-23/oxdna_outputs/e414_lastconf')
-INFO: Output printed on 'loop0/untrusted_strands_set1693481546620-23/oxdna_outputs/e414_lastconf.dat.pdb'
-INFO: Chimera instructions printed to ./chimera.com 'loop0/untrusted_strands_set1693481546620-23/oxdna_outputs/e414_lastconf.dat.pdb'

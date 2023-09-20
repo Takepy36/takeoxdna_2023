@@ -1,8 +1,0 @@
-strand_num,strand_set_id,strand_set_num,strand_set,pilfile_path
-s0,0101,17,"['a', 'b', 'a', 'b']",untrusted_strands_set1693481728738-26/peppercorn_output.pil
-s1,0200,32,"['a', 'a*', 'a', 'a']",untrusted_strands_set1693481728738-26/peppercorn_output.pil
-s2,1010,68,"['b', 'a', 'b', 'a']",untrusted_strands_set1693481728738-26/peppercorn_output.pil
-s4,3303,243,"['b*', 'b*', 'a', 'b*']",untrusted_strands_set1693481728738-26/peppercorn_output.pil
-s6,3323,251,"['b*', 'b*', 'a*', 'b*']",untrusted_strands_set1693481728738-26/peppercorn_output.pil
-s3,1331,125,"['b', 'b*', 'b*', 'b']",untrusted_strands_set1693481728738-26/peppercorn_output.pil
-s5,3312,246,"['b*', 'b*', 'b', 'a*']",untrusted_strands_set1693481728738-26/peppercorn_output.pil

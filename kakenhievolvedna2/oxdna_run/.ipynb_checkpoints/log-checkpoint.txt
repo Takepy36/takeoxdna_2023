@@ -1,1 +1,0 @@
-Could not open file 'sim_result_peppercorn_2022-08-23_19_12_30515938/e0.txt' for reading. Aborting

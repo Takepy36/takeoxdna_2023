@@ -1,2 +1,0 @@
-id,cube,convex hull,expected_number_of_strands,actual_number_of_strands,potential_energy
-22,13.888936837955631,2.603317803692162,1,1,-1.0161085
