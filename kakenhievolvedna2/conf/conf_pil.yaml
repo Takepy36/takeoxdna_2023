@@ -1,0 +1,80 @@
+pil_path: "./results/pils/"
+nupack_path: "./results/nupack-optimSeq-8/output-size8/"
+maxDistance: 6
+
+strand_sets:
+    - id: "A"
+      domains: {a: GTCAGATGAC, a*: GTCATCTGAC, b: AATTCGAATT, b*: AATTCGAATT}
+      pil_file: "L1-A"
+      nupack_file: "L1-A-entropyReactionTypes-1-22-39"
+      sensitivity: 0.80
+
+    - id: "B"
+      domains: {a: TCGATGTCGA, a*: TCGACATCGA, b: AGGTGGGCCT, b*: AGGCCCACCT}
+      pil_file: "L1-B"
+      nupack_file: "L1-B-entropyReactionTypes-1-24-20"
+      sensitivity: 0.80
+
+    - id: "C"
+      domains: {a: CTTCTTGCAG, a*: CTGCAAGAAG, b: ATCTTTTGAT, b*: ATCAAAAGAT}
+      pil_file: "L1-C"
+      nupack_file: "L1-C-meanStruct-0-23-5"
+      sensitivity: 0.80
+
+    - id: "D"
+      domains: {a: ACTGCAAAGT, a*: ACTTTGCAGT, b: CGCATGCGAT, b*: ATCGCATGCG}
+      pil_file: "L1-D"
+      nupack_file: "L1-D-meanStruct-2-13-3"
+      sensitivity: 0.80
+
+    - id: "E"
+      domains: {a: TAGCG, a*: CGCTA, b: ATACT, b*: AGTAT}
+      pil_file: "L2-E"
+      nupack_file: "L2-E-entropyReactionTypes-1-36-11"
+      sensitivity: 0.50
+
+    - id: "F"
+      domains: {a: CTGAG, a*: CTCAG, b: ATCCA, b*: TGGAT}
+      pil_file: "L2-F"
+      nupack_file: "L2-F-entropyReactionTypes-0-21-5"
+      sensitivity: 0.50
+
+    - id: "G"
+      domains: {a: AAGAT, a*: ATCTT, b: TGGCA, b*: TGCCA}
+      pil_file: "L2-G"
+      nupack_file: "L2-G-meanStruct-2-31-18"
+      sensitivity: 0.50
+
+    - id: "H"
+      domains: {a: AACGG, a*: CCGTT, b: GCCTT, b*: AAGGC}
+      pil_file: "L2-H"
+      nupack_file: "L2-H-meanStruct-1-36-12"
+      sensitivity: 0.50
+
+    - id: "I"
+      domains: {a: GATGCCATATGTCAGAG, a*: CTCTGACATATGGCATC, b: CACGATGCGATCACTGG, b*: CCAGTGATCGCATCGTG, c: ATTCAGAGGAGAACCGT, c*: ACGGTTCTCCTCTGAAT, d: GCACATCGCGAATCC, d*: GGATTCGCGATGTGC, e: AGCGTTGGGTACCCATC, e*: GATGGGTACCCAACGCT, f: TCGGGGCACAGAGGGAC, f*: GTCCCTCTGTGCCCCGA}
+      pil_file: "L3-I"
+      nupack_file: "L3-I-entropyReactionTypes-0-25-2"
+      sensitivity: 0.85
+
+    - id: "J"
+      domains: {a: CCCACTTTAATAGCTGC, a*: GCAGCTATTAAAGTGGG, b: AACGCCCGCAGTTTGGC, b*: GCCAAACTGCGGGCGTT, c: CATACCACTTGGACTGG, c*: CCAGTCCAAGTGGTATG, d: GGACTTGGTAATCAT, d*: ATGATTACCAAGTCC, e: AAGGAACGTCTTCCCAT, e*: ATGGGAAGACGTTCCTT, f: ATCCTATACACTTTGGT, f*: ACCAAAGTGTATAGGAT}
+      pil_file: "L3-J"
+      nupack_file: "L3-J-entropyReactionTypes-1-28-33"
+      sensitivity: 0.85
+
+    - id: "K"
+      domains: {a: CCGGGCCCTATGCCGGT, a*: ACCGGCATAGGGCCCGG, b: TAGGGTCTCCTTCTTAA, b*: TTAAGAAGGAGACCCTA, c: TATGTCGACCAAAGCTT, c*: AAGCTTTGGTCGACATA, d: CAGATGCGGTTCTTA, d*: TAAGAACCGCATCTG, e: GTTGATGTACATCGAAA, e*: TTTCGATGTACATCAAC, f: GTCGTATCTCGTTGACT, f*: AGTCAACGAGATACGAC}
+      pil_file: "L3-K"
+      nupack_file: "L3-K-entropyReactionTypes-1-29-46"
+      sensitivity: 0.85
+
+    - id: "L"
+      domains: {a: TACCATTGCGAGTAGTT, a*: AACTACTCGCAATGGTA, b: CAGCGGGCAGACTGTAG, b*: CTACAGTCTGCCCGCTG, c: CCCCAGCGTCAACACGC, c*: GCGTGTTGACGCTGGGG, d: CCCCCCCCCCCCGGC, d*: GCCGGGGGGGGGGGG, e: TCCGTAGCAGCCCGCGC, e*: GCGCGGGCTGCTACGGA, f: ACATCGACGCAGTGTTT, f*: AAACACTGCGTCGATGT}
+      pil_file: "L3-L"
+      nupack_file: "L3-L-meanStruct-1-30-35"
+      sensitivity: 0.85
+
+# MODELINE "{{{1
+# vim:expandtab:softtabstop=4:shiftwidth=4:fileencoding=utf-8
+# vim:foldmethod=marker

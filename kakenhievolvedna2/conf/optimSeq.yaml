@@ -1,0 +1,113 @@
+---
+
+
+#keepTemporaryFiles: False
+
+results_basedir: "results"
+
+pil_path: "./results/pils/"
+nupack_path: "./results/nupack-optimSeq-8/output/"
+maxDistance: 6
+
+data:
+    A:
+        grid: L1-ERT
+        coordinates: "1,22,39"
+        pil_file: "L1-A"
+        path_random: seqA-random100000-0.80
+        path_GA: seqA-GA100000-0.80
+        sensitivity: 0.80
+
+    B:
+        grid: L1-ERT
+        coordinates: "1,24,20"
+        pil_file: "L1-B"
+        path_random: seqB-random100000-0.80
+        path_GA: seqB-GA100000-0.80
+        sensitivity: 0.80
+
+    C:
+        grid: L1-MSS
+        coordinates: "0,23,5"
+        pil_file: "L1-C"
+        path_random: seqC-random100000-0.80
+        path_GA: seqC-GA100000-0.80
+        sensitivity: 0.80
+
+    D:
+        grid: L1-MSS
+        coordinates: "2,13,3"
+        pil_file: "L1-D"
+        path_random: seqD-random100000-0.80
+        path_GA: seqD-GA100000-0.80
+        sensitivity: 0.80
+
+    E:
+        grid: L2-ERT
+        coordinates: "1,36,11"
+        pil_file: "L2-E"
+        path_random: seqE-random100000-0.50
+        path_GA: seqE-GA100000-0.50
+        sensitivity: 0.50
+
+    F:
+        grid: L2-ERT
+        coordinates: "0,21,5"
+        pil_file: "L2-F"
+        path_random: seqF-random100000-0.50
+        path_GA: seqF-GA100000-0.50
+        sensitivity: 0.50
+
+    G:
+        grid: L2-MSS
+        coordinates: "2,31,18"
+        pil_file: "L2-G"
+        path_random: seqG-random100000-0.50
+        path_GA: seqG-GA100000-0.50
+        sensitivity: 0.50
+
+    H:
+        grid: L2-MSS
+        coordinates: "1,36,12"
+        pil_file: "L2-H"
+        path_random: seqH-random100000-0.50
+        path_GA: seqH-GA100000-0.50
+        sensitivity: 0.50
+
+    I:
+        grid: L3-ERT
+        coordinates: "0,25,2"
+        pil_file: "L3-I"
+        path_random: seqI-random100000-0.85
+        path_GA: seqI-GA100000-0.85
+        sensitivity: 0.85
+
+    J:
+        grid: L3-ERT
+        coordinates: "1,28,33"
+        pil_file: "L3-J"
+        path_random: seqJ-random100000-0.85
+        path_GA: seqJ-GA100000-0.85
+        sensitivity: 0.85
+
+    K:
+        grid: L3-ERT
+        coordinates: "1,29,46"
+        pil_file: "L3-K"
+        path_random: seqK-random100000-0.85
+        path_GA: seqK-GA100000-0.85
+        sensitivity: 0.85
+
+    L:
+        grid: L3-MSS
+        coordinates: "1,30,35"
+        pil_file: "L3-L"
+        path_random: seqL-random100000-0.85
+        path_GA: seqL-GA100000-0.85
+        sensitivity: 0.85
+
+
+
+# MODELINE "{{{1
+# vim:expandtab:softtabstop=4:shiftwidth=4:fileencoding=utf-8
+# vim:foldmethod=marker

@@ -1,0 +1,79 @@
+---
+
+keepTemporaryFiles: False
+keepBuggedFiles: True
+resultsBaseDir: ./results
+noPeppercornLogFiles: True
+
+
+batch_mode: False
+save_period: 0
+min_free_mem_pct: 10.
+
+
+# Type of experiment
+expeType: ME-peppercorn
+nbStages: 1
+
+# DNA
+length: 2
+dnaDomains:
+    a: 13
+    b: 13
+
+# Peppercorn
+maxComplexSize: 30
+maxComplexCount: 400
+maxReactionCount: 2000
+concCutOff: 0.5
+
+# Gillespie
+simulationDuration: 3600.0
+defaultConc: 0.0000001
+maxStrandCount: 10
+minSize: 0
+maxSize: 30
+
+
+# Fitness and features
+fitness_type: "largestStruct"
+features_list: ["nbActive", "log10ReactionCount", "length"]
+largestStructDomain: [1.0, 30.0]
+nbActiveDomain: [2, 7]
+log10ReactionCountDomain: [1.0, 5.0]
+lengthDomain: [1, 550]
+
+
+
+
+main_algorithm_name: algo2
+
+# The list of all container.
+containers:
+    cont0:
+        type: Grid         # The type of the container (e.g. Grid, CVTGrid, Container, NoveltyArchive, ...)
+        name: cont0                              # The name of the container. Optional. Default to the parent key (here also 'cont0')
+        shape: [3, 50, 55]                        # The number of bins for each feature
+        max_items_per_bin: 1                     # The number of items in each bin of the grid
+        #depot_type: True
+
+
+
+# The list of all algorithms
+algorithms:
+    # Default parameter values for each algorithm
+    optimisation_task: maximisation   # We perform maximisation of all fitness objectives
+    dimension: 16                     # The number of dimensions of the problem. For rastrigin, any dimension >= 2 can be chosen
+    ind_domain: [0., 1.]              # The domain of each value of the genome (optional)
+
+    algo2:
+        type: GreyCode
+        container: cont0
+        budget: 65535
+        batch_size: 64
+
+
+
+# MODELINE "{{{1
+# vim:expandtab:softtabstop=4:shiftwidth=4:fileencoding=utf-8
+# vim:foldmethod=marker
