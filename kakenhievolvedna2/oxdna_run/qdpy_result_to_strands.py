@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[1]:
 
 
 import os
@@ -73,7 +73,7 @@ def delete_empty_data(tetrad_list):
     for i,line in enumerate(tetrad_list):
         if len(line) == 0:
             popped = tetrad_list.pop(i)
-            print("deleted:",i,popped)
+            #print("deleted:",i,popped)
     return tetrad_list
 
 
@@ -135,13 +135,11 @@ def tetrad_to_strand(tetrad_list):
 # In[14]:
 
 
-def qdpy_result_to_strands(dirpath):
-    #dirpath = "./2022-12-19/20230507_1133"
-    qdpy_log = dirpath + "/qdpy_log.p"
-    with open(qdpy_log,"rb") as f:
+def qdpy_result_to_strands(qdpy_log_path):
+    with open(qdpy_log_path,"rb") as f:
         iterations = pickle.load(f)
 
-    iterations_df = cast_qdpy_iterations(iterations)#必要項目をdfとしてみられるようにした
+    # iterations_df = cast_qdpy_iterations(iterations)#必要項目をdfとしてみられるようにした
 
     tf_list = container_to_tf_list(iterations)
     
@@ -150,25 +148,20 @@ def qdpy_result_to_strands(dirpath):
     
     strand_list = tetrad_to_strand(tetrad_list)#tetrad=４進数の0,1,2,3をa,b,a*,b＊に置き換えるとストランドになる。
     #dt = str(datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S_%f'))
-    use_pickle.dump_to_pickle(
-        dirpath,
-        [iterations,
-         iterations_df,
-         iterations["container"],
-         binary_list,
-         tetrad_list,
-         strand_list],
-         # pd.DataFrame(binary_list),
-         # pd.DataFrame(tetrad_list),
-         # pd.DataFrame(strand_list)],
-        ["iterations",
-         "iterations_df_full_grid",
-         "iter_container_full_grid",
-         "binary_full_grid",
-         "tetrad_num_full_grid",
-         "strands_full_grid"])
-            #["iterations_df","iter_container","created_binary_"+dt,"created_tetrad_list_"+dt,"created_strand_list_"+dt])
-
+    # use_pickle.dump_to_pickle(dirpath,
+    #     [iterations,
+    #      iterations_df,
+    #      iterations["container"],
+    #      binary_list,
+    #      tetrad_list,
+    #      strand_list],
+    #     ["iterations",
+    #      "iterations_df_full_grid",
+    #      "iter_container_full_grid",
+    #      "binary_full_grid",
+    #      "tetrad_num_full_grid",
+    #      "strands_full_grid"])
+    return binary_list,tetrad_list,strand_list
 
 # In[ ]:
 

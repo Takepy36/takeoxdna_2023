@@ -11,7 +11,7 @@ import re
 import importlib
 
 
-# In[9]:
+# In[2]:
 
 
 def replace_strand(contents):
@@ -25,7 +25,7 @@ def replace_strand(contents):
 # replace_strand(test_data)
 
 
-# In[27]:
+# In[3]:
 
 
 def get_strands_data(filepath):
@@ -47,27 +47,34 @@ def get_strands_data(filepath):
             if "#" not in line and "s" in line:
                 strand = re.findall(r's+\d+',line)[0]
                 contents = list(filter(None,re.findall(r'(a\*?|b\*?)\s',line)))
-                ID = replace_strand(" ".join(contents))
-                num = int(ID,4)
+                id = replace_strand(" ".join(contents))
+                num = int(id,4)
                 #わざわざこのように書くのは、後から親ディレクトリ名が変わった場合に対応するため。
-                filepath_data = os.path.join(
-                    os.path.basename(os.path.dirname(filepath)),
-                    os.path.basename(filepath))
-                strands.append([strand,ID,num,contents,filepath_data])
+                # filepath_data = os.path.join(
+                #     os.path.basename(os.path.dirname(filepath)),
+                #     os.path.basename(filepath))
+
+                strands.append([strand,id,num,contents,filepath])
     #print("🧬", strands)
     return strands
 #filepath = "/Users/takepy/takeoxdna/kakenhievolvedna2/oxdna_run/sim_result_peppercorn_2022-10-12_21_05_15180339/outputPepperCorn20220728042950_16216627496182999931957018208784722064_0.pil"  
 #get_strands(filepath)
 
 
-# In[28]:
+# In[4]:
 
+import use_pickle
+import importlib
+importlib.reload(use_pickle)
 
 def get_all_strands(pilfile_path_list):
+    
     strands_df = pd.DataFrame([])
-    strands_lst = []
     for pilfile_path in pilfile_path_list:
+        print("path:",pilfile_path)
         strands = get_strands_data(pilfile_path)
+        for x in strands:
+            print(strands)
         df = pd.DataFrame(strands)
         df.columns = ["strand_num","strand_set_id","strand_set_num","strand_set","pilfile_path"]
         df.to_csv(pilfile_path.replace("pil","csv"),index=None)
@@ -75,7 +82,7 @@ def get_all_strands(pilfile_path_list):
     return strands_df
 
 
-# In[29]:
+# In[5]:
 
 
 def run_all(results_path_lst,strands_csv_path):
@@ -85,7 +92,7 @@ def run_all(results_path_lst,strands_csv_path):
     return strands_df
 
 
-# In[30]:
+# In[ ]:
 
 
 # def main():
@@ -93,14 +100,14 @@ def run_all(results_path_lst,strands_csv_path):
 #     run_all(results_path_lst,"2023-07-31/strands.csv")
 
 
-# In[1]:
+# In[ ]:
 
 
 # #test
 # main()
 
 
-# In[32]:
+# In[ ]:
 
 
 if __name__ == "__main__":

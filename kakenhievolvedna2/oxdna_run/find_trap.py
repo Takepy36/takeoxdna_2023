@@ -1,23 +1,39 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[ ]:
 
 
+import re
+import sys
+import random
 import os
+import subprocess as sp
+from multiprocessing.pool import Pool
+import shutil
 import pandas as pd
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import importlib
+import functools
+
+import find_trap as findtrap
+import run_output_bonds_func as robf
+# import convexhull as cvh
+# import vista_func as vf
+#import get_coordinate as gc
+import config as cfg
+importlib.reload(findtrap)
+importlib.reload(robf)
+# importlib.reload(cvh)
+# importlib.reload(vf)
+importlib.reload(cfg)
 
 
-# In[2]:
+# In[4]:
 
 
-#target = "e_test"
-
-
-# In[3]:
-
-
-def make_domain_list(linelist, length_tup):
+def make_domain_list(linelist, length_dict):
     index_domains = []
     
     count_start = 0
@@ -26,7 +42,7 @@ def make_domain_list(linelist, length_tup):
         #print("block : ", block)
     
         for b in block:
-            count_end = count_start + length_tup[b[0][0]]
+            count_end = count_start + length_dict[b[0][0]]
             index_domains.append([b[0],b[1],count_start,count_end-1])
             count_start = count_end
         
@@ -34,7 +50,8 @@ def make_domain_list(linelist, length_tup):
         print(index_domains)
     return index_domains
 
-# In[4]:
+
+# In[ ]:
 
 
 def make_domain_df(lst):
@@ -42,7 +59,7 @@ def make_domain_df(lst):
     return df2
 
 
-# In[5]:
+# In[ ]:
 
 
 def drop_not_connected(df):
@@ -50,7 +67,7 @@ def drop_not_connected(df):
     return newdf
 
 
-# In[6]:
+# In[ ]:
 
 
 def make_groups(df):
@@ -58,7 +75,7 @@ def make_groups(df):
     return pairs
 
 
-# In[7]:
+# In[ ]:
 
 
 def count_domains(df):
@@ -66,7 +83,8 @@ def count_domains(df):
     return len(df_pairs)
 
 
-# In[8]:
+# In[2]:
+
 
 def make_external(df, target, output_dir):
     try : 
@@ -92,12 +110,12 @@ def make_external(df, target, output_dir):
         print("group {} does not exist".format(x))
 
 
-# In[9]:
+# In[3]:
 
 
-def make_trap(linelist, length_tup, target, output_dir):
+def make_trap(linelist, length_dict, target, output_dir):
     #print(linelist, "\n")
-    domain_list = make_domain_list(linelist, length_tup)
+    domain_list = make_domain_list(linelist, length_dict)
     #print("domain_list : ", domain_list, "\n")
     domain_df = make_domain_df(domain_list)
     #print("domain_df : \n", domain_df)
@@ -105,6 +123,15 @@ def make_trap(linelist, length_tup, target, output_dir):
     #print("connected_df : \n", connected_df)
     make_external(connected_df, target, output_dir)
     return domain_list
+
+
+# In[ ]:
+
+
+def main():
+    domain_list = make_trap(replaced_linelist, tup, target, output_folder)
+    
+    
 
 
 # In[ ]:

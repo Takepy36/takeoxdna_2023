@@ -69,7 +69,8 @@ def get_data_for_bootstrap(data,n_trials=100):
 # In[27]:
 
 
-def bootstrap_prediction(dirpath,data_for_bootstrap,x_test):
+# def bootstrap_prediction(dirpath,data_for_bootstrap,x_test):
+def bootstrap_prediction(data_for_bootstrap,x_test,regressionmodel,empty_model_filepath):
     #dirpathはモデルが入っているフォルダ。
     bootstrap_result = []
     bootstrap_models = []
@@ -77,7 +78,7 @@ def bootstrap_prediction(dirpath,data_for_bootstrap,x_test):
     for dt in data_for_bootstrap:
         strand_data = dt[:,:-1]#バイナリで表されたストランド組み合わせの有無
         energy_data = dt[:,-1]#エネルギーの値
-        regressionmodel = read_pickle(dirpath + "/empty_svm.p")
+        regressionmodel = read_pickle(empty_model_filepath)
         regressionmodel.fit(strand_data,energy_data)
         #ブートストラップ用データからモデルを作った。
         test_result = regressionmodel.predict(x_test)
@@ -105,21 +106,24 @@ def calculate_func(y_test,bootstrap_result, func = np.std, name= "bootstrap_std"
 # In[25]:
 
 
-def all_bootstrap(dirpath):
-    x_train = read_pickle(dirpath + "/x_train.p")
-    x_test = read_pickle(dirpath + "/x_test.p")
-    y_train = read_pickle(dirpath + "/y_train.p")
-    y_test = read_pickle(dirpath + "/y_test.p")
+#def all_bootstrap(dirpath):
+def all_bootstrap(x_train,x_test,y_train,y_test,regressionmodel,empty_model_filepath):
+    # x_train = read_pickle(dirpath + "/x_train.p")
+    # x_test = read_pickle(dirpath + "/x_test.p")
+    # y_train = read_pickle(dirpath + "/y_train.p")
+    # y_test = read_pickle(dirpath + "/y_test.p")
     data = pd.concat([x_train,y_train],axis=1).rename({"oxdna_energy_mean":"bootstrap_energy_mean"})
     bootstrap_data = get_data_for_bootstrap(data)
     
-    bootstrap_result,bootstrap_models = bootstrap_prediction(dirpath,bootstrap_data, x_test)
+    # bootstrap_result,bootstrap_models = bootstrap_prediction(dirpath,bootstrap_data, x_test)
+    bootstrap_result,bootstrap_models = bootstrap_prediction(bootstrap_data, x_test,regressionmodel,empty_model_filepath)
     bootstrap_result_std = calculate_func(y_test,bootstrap_result)#funcは色々使えるが、今回はstd
     bootstrap_result_avg = calculate_func(y_test,bootstrap_result, np.average, name = "bootstrap_avg")#avgの計算もできる。
     all_bootstrap_results = pd.concat([x_test,y_test,bootstrap_result_avg, bootstrap_result_std],axis=1)
-    use_pickle.dump_to_pickle(dirpath,
-                   [bootstrap_data,all_bootstrap_results,bootstrap_models],
-                   ["bootstrap_data","all_bootstrap_results","bootstrap_models"])
+    # use_pickle.dump_to_pickle(dirpath,
+    #                [bootstrap_data,all_bootstrap_results,bootstrap_models],
+    #                ["bootstrap_data","all_bootstrap_results","bootstrap_models"])
+    return all_bootstrap_results, bootstrap_models
 
 
 # 以上は、100回のbootstrapで作った100のモデルにそれぞれtestデータを予測させ、その100回予測した結果の標準偏差をそれぞれ求めたものである。

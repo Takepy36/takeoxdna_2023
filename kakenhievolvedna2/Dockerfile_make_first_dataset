@@ -38,7 +38,7 @@ RUN cd Python-3.9.2 && ./configure && make && make install
 
 # Install peppercorn
 RUN python3.9 -m pip install --upgrade pip
-RUN pip3 install vtk pybind11 tqdm colorama psutil
+RUN pip3 install vtk pybind11 tqdm colorama psutil textfile
 RUN pip3 install parse powerlaw networkx 
 #RUN pip3 install matplotlib==2.2.4 seaborn graphviz pydot
 RUN pip3 install matplotlib seaborn graphviz pydot

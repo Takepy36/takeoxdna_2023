@@ -17,6 +17,8 @@ importlib.reload(use_pickle)
 importlib.reload(main)
 importlib.reload(make_filepath)
 
+import pandas as pd
+
 
 # In[2]:
 
@@ -38,10 +40,11 @@ def write_list_to_txt(lst,path):
 # In[4]:
 
 
-def make_peppercorn_input(dirpath,length_a,length_b,strands_list,filename_num):
+def make_peppercorn_input(dirpath,length_a,length_b,strands_list):#,filename_num):
     #example:[['a', 'a', 'b*', 'b*'], ['a*', 'a*', 'b', 'b']]
     #filepath = dirpath+"/"+filename_num+"_peppercorn_input.pil"
-    filepath = dirpath+"peppercorn_input.pil"
+    filepath = os.path.join(dirpath,"peppercorn_input.pil")
+    
     with open (filepath,"w") as f:
         f.write("length a = " + str(length_a) + "\n")
         f.write("length b = " + str(length_b) + "\n")
@@ -59,8 +62,8 @@ def make_peppercorn_input(dirpath,length_a,length_b,strands_list,filename_num):
 # In[5]:
 
 
-def run_peppercorn(input_filepath,output_filepath,max_complex_size,
-                   peppercorn_dirpath = "../peppercornenumerator"):
+def run_peppercorn(input_filepath,output_filepath,max_complex_size):
+                   #peppercorn_dirpath = "../peppercornenumerator"):
     #max_complex_sizeはデバッグの際に変更して使える。
     executable = ["peppercorn","-o",
                   output_filepath,
@@ -74,40 +77,37 @@ def run_peppercorn(input_filepath,output_filepath,max_complex_size,
 # In[7]:
 
 
-def make_untrusted_strands_files(untrusted_strands_list,
-                                 untrusted_strands_index,
-                                 length_a,length_b,
-                                 max_complex_size,dirpath):
-    str_a = main.get_random_DNA(length_a)
-    str_b = main.get_random_DNA(length_b)
-    str_a_star = main.get_comp_DNA(str_a)
-    str_b_star = main.get_comp_DNA(str_b)
-    strands_dict = {'a':str_a, 'b':str_b, 'a*':str_a_star, 'b*':str_b_star}
+def run_peppercorn_for_list(untrusted_strands_list,
+                            untrusted_strands_index,
+                            length_a,length_b,
+                            max_complex_size,dirpath,strands_set_dirname="untrusted_strands_set"):
     
-    untrusted_peppercorn_outputs = []
+    # use_pickle.dump_to_pickle(dirpath,[untrusted_strands_list],["untrusted_strands_set"])
+
+    untrusted_peppercorn_folders = []
     for list_index,strands_list in enumerate(untrusted_strands_list):
         sets_path = make_filepath.make_dir(
             dirpath,
-            "untrusted_strands_set"+str(untrusted_strands_index[list_index]))
+            strands_set_dirname+str(untrusted_strands_index[list_index]))
         
         peppercorn_input_path = make_peppercorn_input(
-            sets_path,length_a,length_b,strands_list,
-            str(untrusted_strands_index[list_index]))
+            sets_path,length_a,length_b,strands_list)
+            #str(untrusted_strands_index[list_index]))
         
         peppercorn_output_path = os.path.join(
-            sets_path,
-            str("peppercorn_output.pil"))
+            sets_path,"peppercorn_output.pil")
             #str(untrusted_strands_index[list_index])+"_peppercorn_output.pil")
         
         run_peppercorn(peppercorn_input_path,peppercorn_output_path,max_complex_size)
         
-        untrusted_peppercorn_outputs.append(peppercorn_output_path)
+        untrusted_peppercorn_folders.append(sets_path)
         
-    return untrusted_peppercorn_outputs
+        
+    return untrusted_peppercorn_folders
 
 
 # In[ ]:
-
+    
 
 
 

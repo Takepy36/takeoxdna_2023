@@ -8,7 +8,7 @@
 # 
 # https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.BaggingRegressor.html#sklearn.ensemble.BaggingRegressor
 
-# In[28]:
+# In[9]:
 
 
 import pandas as pd
@@ -34,9 +34,10 @@ import time
 import csv
 from scipy.stats import linregress
 from sklearn.model_selection import train_test_split
+import shutil
 
 
-# In[29]:
+# In[6]:
 
 
 from sklearn.svm import SVR
@@ -55,33 +56,31 @@ from sklearn.model_selection import GridSearchCV
 # In[63]:
 
 
-def make_df_for_learning(source_dirpath):
-    df = pd.read_csv(os.path.join(source_dirpath,"strands.csv"))
-    df_groupby = df.groupby("pilfile_path")
-    #df["pilfile_path"].values
-    df_groupby.get_group(df["pilfile_path"].values[0])
+# def make_df_for_learning(source_dirpath,strands_df):
+def make_df_for_learning(strands_df):
+    #strands_df = pd.read_csv(os.path.join(source_dirpath,"strands.csv"))
+    #受け取ったデータはファイルパスごとに分けられる。
+    df_groupby = strands_df.groupby("pilfile_path")
+    df_groupby.get_group(strands_df["pilfile_path"].values[0])
     #strand_set_numは理論上、0 ~ 255まで存在する。
     path_strands_binary = []
-    for i, data in enumerate(df_groupby):
+    #for i, data in enumerate(df_groupby):
+    for data in df_groupby:
         test_df = data[1]
-        arr = ["0"] * 256
-        strand_list = []
-        for i,num in enumerate(test_df.loc[:,"strand_set_num"].values):
-            arr[255-num] = "1"
-            #strand_list.append[test_df.loc[:,"strand_set"]]
-        #print(test_df.loc[:,"strand_set"])
-        energy_path = os.path.join(
-            source_dirpath,
-            os.path.dirname(
-                test_df.loc[:,"pilfile_path"].values[0]),
-            "energy_log.csv")
-        oxdna_energy_mean = pd.read_csv(energy_path).loc[:,"potential_energy"].mean
+        arr = ["0"] * 256#この256はストランドの種類の組み合わせ数であり、変わることがあるので改良すべきである。
 
+        #for i,num in enumerate(test_df.loc[:,"strand_set_num"].values):
+        for idx in test_df.index:
+            arr[255-test_df.loc[idx,"strand_set_num"]] = "1"
+            energy_path = os.path.join(
+                os.path.dirname(test_df.loc[idx,"pilfile_path"]),
+                "energy_log.csv")
+
+        oxdna_energy_mean = pd.read_csv(energy_path).loc[:,"potential_energy"].mean
 
         try:
             oxdna_energy_mean = pd.read_csv(energy_path).loc[:,"potential_energy"].mean()
 
-            #path_strands_binary.append([data[0],int("".join(arr),2),energy])
             path_strands_binary.append(
                 [data[0],
                  list(test_df.loc[:,"strand_set"]),
@@ -89,7 +88,6 @@ def make_df_for_learning(source_dirpath):
                  int("".join(arr),2),oxdna_energy_mean]
             )
         except:
-            #path_strands_binary.append([data[0],int("".join(arr),2),None])
             path_strands_binary.append(
                 [data[0],
                  list(test_df.loc[:,"strand_set"]),
@@ -99,7 +97,7 @@ def make_df_for_learning(source_dirpath):
             )
     binary_strands_energy_data = pd.DataFrame(path_strands_binary)
     binary_strands_energy_data.columns = ["path","strands","code_num","code_num2","oxdna_energy_mean"]
-    binary_strands_energy_data.to_csv(os.path.join(source_dirpath,"binary_strands_energy_data.csv"),index=False)
+    # binary_strands_energy_data.to_csv(os.path.join(source_dirpath,"binary_strands_energy_data.csv"),index=False)
     df01 = pd.DataFrame([])
     for lst in binary_strands_energy_data.loc[:,"code_num"].values:
         #display(pd.DataFrame(lst).T)
@@ -108,14 +106,15 @@ def make_df_for_learning(source_dirpath):
         df_binary_strands_energy = pd.concat([df_binary_strands_energy,binary_strands_energy_data.loc[:,"strands"]],axis=1)
         df_binary_strands_energy = df_binary_strands_energy.dropna()
         
-    use_pickle.dump_to_pickle(source_dirpath,[df_binary_strands_energy],["df_binary_strands_energy"])
+    # use_pickle.dump_to_pickle(source_dirpath,[df_binary_strands_energy],["df_binary_strands_energy"])
     return df_binary_strands_energy
 
 
-# In[55]:
+# In[3]:
 
 
-def make_datasets(dirpath,df_binary_strands_energy):
+#def make_datasets(dirpath,df_binary_strands_energy):
+def make_datasets(df_binary_strands_energy):
     
     dataset0 = df_binary_strands_energy.copy()
     x_train, x_test, y_train, y_test = train_test_split(
@@ -125,19 +124,11 @@ def make_datasets(dirpath,df_binary_strands_energy):
     )
     
     #strandsを含むデータセットをファイルに保存しておく。
-    
-    ytrain_mean = y_train.mean()
-    ytrain_std = y_train.std()
+    #variable_list = [x_train,y_train,x_test,y_test]
 
-    ytest_mean = y_test.mean()
-    ytest_std = y_test.std()
-    
-    # variable_list = [x_train,y_train,x_test,y_test,x_train0,y_train0,x_test0,y_test0]
-    variable_list = [x_train,y_train,x_test,y_test]
+    #namelist = ["x_train","y_train","x_test","y_test"]
 
-    #namelist = ["x_train","y_train","x_test","y_test","x_train0","y_train0","x_test0","y_test0"]
-    namelist = ["x_train","y_train","x_test","y_test"]
-    use_pickle.dump_to_pickle(dirpath,variable_list,namelist)
+    #dump_to_pickle(dirpath,variable_list,namelist)
 
     return x_train,y_train,x_test,y_test
 
@@ -211,10 +202,10 @@ def make_svm_result(dirpath,train_filename,test_filename,model,x_train,y_train,x
 
 
 
-# In[59]:
+# In[13]:
 
 
-def make_optimized_svm(dirpath,Xtrain,ytrain,Xtest,ytest,bagging=False):
+def make_optimized_svm(dirpath,Xtrain,ytrain,Xtest,ytest):#,bagging=False):
     #試したいパラメータの候補。
     svrcs = 2**np.arange( -5, 11, dtype=float)          # Candidates of C
     svrepsilons = 2**np.arange( -10, 1, dtype=float)    # Candidates of epsilon
@@ -261,63 +252,66 @@ def make_optimized_svm(dirpath,Xtrain,ytrain,Xtest,ytest,bagging=False):
     print ("C: {0}, Epsion: {1}, Gamma: {2}".format(optimalsvrc, optimalsvrepsilon, optimalsvrgamma))
     
     #regressionmodel = svm.SVR(kernel='rbf', C=optimalsvrc, epsilon=optimalsvrepsilon, gamma=optimalsvrgamma)
-    regressionmodel = make_svm(dirpath,"param_optimized_svm.txt",optimalsvrgamma,optimalsvrc,optimalsvrepsilon)
+    regressionmodel = make_svm(dirpath,"optimized_svm_summary.txt",optimalsvrgamma,optimalsvrc,optimalsvrepsilon)
+    
     use_pickle.dump_to_pickle(dirpath,[regressionmodel],["empty_svm"])
     regressionmodel.fit(autoscaledXtrain, autoscaledytrain)
-    use_pickle.dump_to_pickle(dirpath,[regressionmodel],["model"])
+    #use_pickle.dump_to_pickle(dirpath,[regressionmodel],["model"])
     
-    #ついでなので、baggingを適用したものも追加。
-    if bagging:
-        regr2 = BaggingRegressor(estimator=regressionmodel,
-                             n_estimators=10,
-                             random_state=0)
-        regr2.fit(autoscaledXtrain, autoscaledytrain)
-        use_pickle.dump_to_pickle(dirpath,[regr2],["bagging_model"])
-        return regressionmodel,regr2
+    #baggingを適用したものも追加する場合
+    # if bagging:
+    #     regr2 = BaggingRegressor(estimator=regressionmodel,
+    #                          n_estimators=10,
+    #                          random_state=0)
+    #     regr2.fit(autoscaledXtrain, autoscaledytrain)
+    #     use_pickle.dump_to_pickle(dirpath,[regr2],["bagging_model"])
+    #     return regressionmodel,regr2
     
     return regressionmodel
 
 
-# In[60]:
+# In[14]:
 
 
-def make_model(source_dirpath,results_dirpath):
-    df_binary_strands_energy = make_df_for_learning(source_dirpath)
-    x_train,y_train,x_test,y_test = make_datasets(results_dirpath,df_binary_strands_energy)
+# def make_model(source_dirpath,results_dirpath,strands_df):
+def make_model(results_dirpath,strands_df):
+    # df_binary_strands_energy = make_df_for_learning(source_dirpath,strands_df)
+    df_binary_strands_energy = make_df_for_learning(strands_df)
+    # x_train,y_train,x_test,y_test = make_datasets(results_dirpath,df_binary_strands_energy)
+    x_train,y_train,x_test,y_test = make_datasets(df_binary_strands_energy)
     #regressionmodel,bagging_regressionmodel = make_optimized_svm(dirpath,x_train,y_train,x_test,y_test)
     regressionmodel = make_optimized_svm(results_dirpath,x_train,y_train,x_test,y_test)
-    svm_train_result,svm_test_result = make_svm_result(
-        results_dirpath,
-        "train_result",
-        "test_result",
-        regressionmodel,
-        x_train,y_train,x_test,y_test)
-    use_pickle.dump_to_pickle(results_dirpath,[svm_train_result,svm_test_result],["svm_train_result","svm_test_result"])
+    
+    # svm_train_result,svm_test_result = make_svm_result(
+    #     results_dirpath,
+    #     "train_result",
+    #     "test_result",
+    #     regressionmodel,
+    #     x_train,y_train,x_test,y_test)
+    # use_pickle.dump_to_pickle(results_dirpath,[svm_train_result,svm_test_result],["svm_train_result","svm_test_result"])
+    # return svm_train_result, svm_test_result, regressionmodel
+    return x_train,y_train,x_test,y_test,regressionmodel
 
 
-# In[61]:
-
-
-# source_dirpath = "2023-07-31"
-# df = pd.read_csv(os.path.join(source_dirpath,"strands.csv"))
-
-
-# In[65]:
-
-
-#make_model("2023-07-31","2023-07-31/20230725_2356/loop0")
-
-
-# In[38]:
+# In[11]:
 
 
 def make_model_for_loop(datasets_dirpath,results_dirpath):
-    x_train = use_pickle.read_pickle(results_dirpath,"x_train.p")
-    y_train = use_pickle.read_pickle(results_dirpath,"y_train.p")
-    x_test = use_pickle.read_pickle(datasets_dirpath,"x_test.p")
-    y_test = use_pickle.read_pickle(datasets_dirpath,"y_test.p")
-    use_pickle.dump_to_pickle(results_dirpath,[x_test,y_test],["x_test","y_test"])
+
+    x_train = use_pickle.read_pickle(datasets_dirpath+"/x_train.p")
+    y_train = use_pickle.read_pickle(datasets_dirpath+"/y_train.p")
+    x_test = use_pickle.read_pickle(datasets_dirpath+"/x_test.p")
+    y_test = use_pickle.read_pickle(datasets_dirpath+"/y_test.p")
+    
+    #ループを円滑に回すため、テスト用ファイルは出力先にもコピーしておく。
+    shutil.copy2(os.path.join(datasets_dirpath,"x_test.p"),
+                 os.path.join(results_dirpath,"x_test.p"))
+    shutil.copy2(os.path.join(datasets_dirpath,"y_test.p"),
+                 os.path.join(results_dirpath,"y_test.p"))
+    
+    
     regressionmodel = make_optimized_svm(results_dirpath,x_train,y_train,x_test,y_test)
+    
     svm_train_result,svm_test_result = make_svm_result(
         results_dirpath,
         "train_result",
@@ -326,11 +320,7 @@ def make_model_for_loop(datasets_dirpath,results_dirpath):
         x_train,y_train,x_test,y_test)
     use_pickle.dump_to_pickle(results_dirpath,[svm_train_result,svm_test_result],["svm_train_result","svm_test_result"])
 
-
-# In[ ]:
-
-
-#use_pickle.read_pickle("2022-12-19/test","x_train.p")
+    return x_train,y_train,x_test,y_test,regressionmodel
 
 
 # ## 参考にした文献

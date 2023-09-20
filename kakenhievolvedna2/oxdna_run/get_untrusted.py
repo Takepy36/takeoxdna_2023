@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[7]:
 
 
 import os
@@ -11,9 +11,7 @@ import bootstrap
 import run_qdpy
 import qdpy_result_to_strands as qdpy_strand
 import use_pickle
-import numpy as np
 import pandas as pd
-import math
 importlib.reload(mm)
 importlib.reload(bootstrap)
 importlib.reload(run_qdpy)
@@ -38,7 +36,6 @@ def get_untrusted(dirpath,datasets,
         df_high = df_down.head(int(len(df)*ratio))
         #簡易的なデータを眺める用の出力
         #上位下位の25 %を連結してCSV出力
-        #use_pickle.dump_to_pickle(dirpath,[df_high],["untrusted_{}_percent".format(math.floor(ratio*100))])
         use_pickle.dump_to_pickle(dirpath,[df_high],[filename])
         return df_high
     else:
@@ -49,18 +46,23 @@ def get_untrusted(dirpath,datasets,
         return df_low
 
 
-# In[3]:
+# In[2]:
 
 
-def predict_and_std(binary_df,models):
-    #バイナリデータから、構造のエネルギーを複数回予測。
+def predict_energy(binary_df,models):
+    #モデルの配列を受け取り、モデルの数だけ予測をした結果をdfとして返す。
     energy_df = pd.DataFrame([])
     for num,model in enumerate(models):
         predicted_energy = pd.Series(model.predict(binary_df))#256バイナリから予測されたエネルギー値79個がある。
         predicted_energy.name = num
         energy_df = pd.concat([energy_df,predicted_energy],axis=1)
-        
-    #複数回のエネルギー予測の平均とばらつきを計算。
+    return energy_df
+
+
+# In[6]:
+
+
+def mean_and_std(binary_df,energy_df):
     energy_df_mean = energy_df.mean(axis=1)
     energy_df_mean.name = "qdpy_bootstrap_energy_mean"
 
@@ -78,64 +80,74 @@ def predict_and_std(binary_df,models):
 #本来はグリッドに配置された構造から選ぶべきところを、誤ってブートストラップモデル作成用データから選んでしまっていたので修正した。
 
 
-# In[24]:
+# In[1]:
 
-
-def qdpy_to_untrusted_strands(datasets_dirpath,results_dirpath,qdpy_bgt):
+#この関数はモデル予測を使う場合のみ使用する。
+#ストランドセットのデータを受け取り、信頼できないもののバイナリとエネルギーを返す。
+def get_untrusted_binary_and_energy(strands_df,datasets_dirpath,results_dirpath,qdpy_bgt):
+    
     #ブートストラップモデル作成
     if os.path.basename(results_dirpath) == "loop0":
-        mm.make_model(datasets_dirpath,results_dirpath)
+        x_train,y_train,x_test,y_test,regressionmodel = mm.make_model(results_dirpath,strands_df)
     else:
-        mm.make_model_for_loop(datasets_dirpath,results_dirpath)
-    bootstrap.all_bootstrap(results_dirpath)
-
-    #作ったブートストラップモデルを読み出す。
-    models = use_pickle.read_pickle(results_dirpath,"bootstrap_models.p")
+        x_train,y_train,x_test,y_test,regressionmodel = mm.make_model_for_loop(datasets_dirpath,results_dirpath)
+            
+    # bootstrap.all_bootstrap(results_dirpath)
+    all_bootstrap_results, bootstrap_models = bootstrap.all_bootstrap(x_train,x_test,y_train,y_test,
+                                                                    regressionmodel,results_dirpath+"/empty_svm.p")
+    
+    #for debag
+    # use_pickle.dump_to_pickle(results_dirpath,[all_bootstrap_results],["all_bootstrap_results"])
     
     #qdpyにより、*_full_grid.pを生成する。これはグリッドに配置された構造の集合である。
     logfile = results_dirpath + "/qdpy_progress.txt"
     with redirect_stdout(open(logfile, 'w')):
-        run_qdpy.run_qdpy(results_dirpath,qdpy_bgt)
+        run_qdpy.run_qdpy(datasets_dirpath,results_dirpath,bootstrap_models,bgt=qdpy_bgt,plot=True)
         
+    
     #グリッド内容を256バイナリ(構造の組み合わせ有無)に変換。
-    qdpy_strand.qdpy_result_to_strands(results_dirpath)
+    qdpy_binary,qdpy_tetrad,qdpy_strands = qdpy_strand.qdpy_result_to_strands(results_dirpath+"/qdpy_log.p")
     
     #作ったバイナリデータを読み出す。
-    qdpy_binary = use_pickle.read_pickle(results_dirpath,"binary_full_grid.p")#x_trainと同じ形になるはず
     qdpy_binary_df = pd.DataFrame(qdpy_binary)
     
     #バイナリデータから、構造のエネルギーを複数回予測。
-    qdpy_binary_energy_data = predict_and_std(qdpy_binary_df,models)
+    qdpy_binary_energy_data = mean_and_std(qdpy_binary_df,predict_energy(qdpy_binary_df,bootstrap_models))
     
     #エネルギー予測が信頼できない構造を取り出す。
     untrusted_df = get_untrusted(results_dirpath,qdpy_binary_energy_data,
-                                 0.3,"untrusted_qdpy_data",
-                                 std_column_name="qdpy_bootstrap_energy_std")
-    #binary(256),bootstrap_energy_avg,bootstrap_energy_std
+                                0.3,"untrusted_qdpy_data",
+                                std_column_name="qdpy_bootstrap_energy_std")
     
-    untrusted_tetrad = qdpy_strand.tf_to_tetrad(untrusted_df.iloc[:,:256].values)
-    untrusted_strands = qdpy_strand.tetrad_to_strand(untrusted_tetrad)
-    #順番は保存されているので、これをdfにしてuntrusted_dfのindexをつければそのまま使える。
+    return x_train,x_test,y_train,y_test,untrusted_df,qdpy_binary,qdpy_tetrad,qdpy_strands
     
-    use_pickle.dump_to_pickle(results_dirpath,
-                              [untrusted_tetrad,untrusted_strands],
-                              ["untrusted_qdpy_tetrad","untrusted_qdpy_strands"])
-    
-    
-    #デバッグなどが楽になるよう、一旦このパスをファイル出力しておく。
-    with open("parent_dir.txt","w") as f:
-        f.write(os.path.dirname(results_dirpath))
+
+
+
+
+def get_oxdna_only_binary_and_energy(datasets_dirpath,results_dirpath,oxdna_input_file,qdpy_bgt,file_delete=True):
+    #比較対象。こちらでは機械学習ではないので信頼度は計算しない。
+    run_qdpy.run_qdpy_oxdna_directly(datasets_dirpath,
+                                     results_dirpath,
+                                     oxdna_input_file,
+                                     qdpy_bgt,
+                                     plot=True,file_delete=file_delete)
         
-    return untrusted_df
+    
+    #グリッド内容を256バイナリ(構造の組み合わせ有無)に変換。
+    qdpy_binary,qdpy_tetrad,qdpy_strands = qdpy_strand.qdpy_result_to_strands(results_dirpath+"/qdpy_log.p")
+    qdpy_binary_df = pd.DataFrame(qdpy_binary)
+
+    #ここからはoxDNAオンリーの特有の動作になる。
+
+        
+    return qdpy_binary_df,qdpy_tetrad,qdpy_strands
 
 
 # In[9]:
 
 
-# datasets_dirpath = "2022-12-19"
-# results_dirpath = "2022-12-19/test"
-# #with redirect_stdout(open(os.path.join(results_dirpath,"qdpy_to_untrusted_strands_log.txt"), 'w')):
-# untrusted_df = qdpy_to_untrusted_strands(datasets_dirpath,results_dirpath)
+#qdpy_to_untrusted_strands("20230731_0000/20230813_2140/loop0","20230731_0000/20230813_2140/loop1",10000)
 
 
 # In[ ]:

@@ -1,8 +1,11 @@
 *.tgz
 *.zip
 *.tar.gz
+*.log
+*.out
+*.ipynb
 kakenhievolvedna_2020/
-unused/
+/kakenhievolvedna2/oxdna_run/unused/
 /kakenhievolvedna2/sim_result_peppercorn*/
 /kakenhievolvedna2/results/
 /kakenhievolvedna2/logs/
@@ -15,4 +18,4 @@ unused/
 /kakenhievolvedna2/oxdna_run/*.csv
 /kakenhievolvedna2/oxdna_run/*.txt
 /kakenhievolvedna2/oxdna_run/*.pil
-/kakenhievolvedna2/oxdna_run/*.log
+

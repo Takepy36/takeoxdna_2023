@@ -23,8 +23,14 @@ def dump_to_pickle(dirpath,variable_list,namelist,output=True):
 # In[1]:
 
 
-def read_pickle(dirpath,filename):
-    with open(dirpath+"/"+filename,"rb") as f:
+def read_pickle(path):
+    with open(path,"rb") as f:
         contents = pickle.load(f)
     return contents
+
+
+# In[ ]:
+
+
+
 

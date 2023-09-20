@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[10]:
+# In[2]:
 
 
 import os
@@ -22,6 +22,13 @@ importlib.reload(send_mail)
 import traceback
 import make_filepath
 importlib.reload(make_filepath)
+
+
+# In[3]:
+
+
+import pil_to_strands
+importlib.reload(pil_to_strands)
 
 
 # In[4]:
@@ -46,7 +53,7 @@ def get_lastconf(output_folder):
 # In[14]:
 
 
-def run_main_for_eachfiles(results_dir_path, empty_dir_list, parent_dir):
+def run_oxdna_for_eachfiles(results_dir_path, empty_dir_list, parent_dir):
     
     d = {' ' :  '_', '.' :  '', ':' : '_'}
     tbl = str.maketrans(d)
@@ -116,7 +123,17 @@ def send_make_dataset_mail(flag,error_message,start_datetime,end_datetime,elapse
         send_mail.program_complete_mail(mail_title = "🐍【実行エラー】 Pythonプログラム 【make_first_dataset】 でエラーが発生しました🐍",mailtext = text)
 
 
-# In[12]:
+# In[13]:
+
+
+def make_first_strands_csv(parent_dir):
+    pilfile_path_list = glob.glob(parent_dir+"/sim_result_peppercorn*/*result.pil")
+    strands_df = pil_to_strands.get_all_strands(pilfile_path_list)
+    strands_csv_path = parent_dir + "/strands.csv"
+    strands_df.to_csv(strands_csv_path,index=None)
+
+
+# In[15]:
 
 
 def sim_all_results_dir(all_results_dir = cfg.results_dir):
@@ -140,7 +157,7 @@ def sim_all_results_dir(all_results_dir = cfg.results_dir):
             results_dir_name = os.path.basename(results_dir_path)
             # print("ライブラリパス：", results_dir_path, "\n")
             # print("ライブラリ名：", results_dir_name, "\n")
-            run_main_for_eachfiles(results_dir_path,empty_dir_list,parent_dir)
+            run_oxdna_for_eachfiles(results_dir_path,empty_dir_list,parent_dir)
 
             empty_dir_log = "empty_dir_log.txt"      
             with open(empty_dir_log,"w") as elog:
@@ -149,9 +166,12 @@ def sim_all_results_dir(all_results_dir = cfg.results_dir):
                     elog.write("\n")
                 elog.close()
 
-        search_dir_name = "sim_result_peppercorn*"
+        #search_dir_name = "sim_result_peppercorn*"
         #mm.make_all_mean_file(search_dir_name)
-        print("mean file created\n",file=sys.stdout)
+        #print("mean file created\n",file=sys.stdout)
+        
+        
+        make_first_strands_csv(parent_dir)
 
         print("🎉🤗All simuration was finished!🤗🎉")
         
@@ -166,6 +186,8 @@ def sim_all_results_dir(all_results_dir = cfg.results_dir):
     elapsed_time = t2-t1
     endtime = datetime.datetime.fromtimestamp(time.time())
     end_datetime = endtime.strftime('%Y/%m/%d %H:%M:%S')
+    
+    
     
     send_make_dataset_mail(flag,error_message,start_datetime,end_datetime,elapsed_time)
 

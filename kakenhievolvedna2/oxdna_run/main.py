@@ -22,7 +22,7 @@ import find_trap as findtrap
 import run_output_bonds_func as robf
 # import convexhull as cvh
 # import vista_func as vf
-import get_coordinate as gc
+#import get_coordinate as gc
 import config as cfg
 import read_energy_file as reef
 importlib.reload(findtrap)
@@ -102,8 +102,8 @@ def get_comp_DNA(str):
 def create_filename(line, output_dir):
     where_space = line.find(' ')
     filename_e = line[0:where_space]
-    filename  =  output_dir + '/{}.txt'.format(filename_e)
-    return filename
+    filename  =  output_dir + '/{}_sequence.txt'.format(filename_e)
+    return filename_e,filename
 
 
 # In[8]:
@@ -181,7 +181,7 @@ def replace_parentheses(given_string):
 
 
 def write_file(line, str_a, str_b, str_a_star, str_b_star, output_ATGC_folder):
-    filename = create_filename(line, output_ATGC_folder)
+    target,filename = create_filename(line, output_ATGC_folder)
     replaced_linelist = replace_parentheses(line)#ここでリストに変化する
     #[[('a*', 0), ('b', 1)], [('a*', -1), ('b*', 1)], [('a', 0), ('b', 2)], [('a*', -1), ('b*', 2)]]
     #print(replaced_linelist, "\n")
@@ -196,7 +196,7 @@ def write_file(line, str_a, str_b, str_a_star, str_b_star, output_ATGC_folder):
         file.writelines(text)
         file.writelines('\n')
     file.close()
-    return filename, replaced_linelist
+    return target, filename, replaced_linelist#e0_sequence.txtなど。
     #ATGCの塩基配列のファイルができる。
 
 
@@ -211,7 +211,7 @@ def run_generate_sa(target, output_oxdna_dir, output_ATGC_dir,
     executable = ["python2", 
                   os.path.join(oxdna_path, "UTILS", "generate-sa-takeguchi.py"), 
                   str(box_size),
-                  os.path.join(output_ATGC_dir,"{}.txt".format(target)), 
+                  os.path.join(output_ATGC_dir,"{}_sequence.txt".format(target)), 
                   os.path.join(output_oxdna_dir, target)]
     #stdout
     print("command: ",executable)
@@ -222,10 +222,8 @@ def run_generate_sa(target, output_oxdna_dir, output_ATGC_dir,
 # In[13]:
 
 
-#def read_input(input_file = "input_relax_1e5"):
-def read_input(input_file = cfg.oxdna_input):
-    input_filename = input_file
-    with open(input_filename ,'r') as file:
+def read_input(input_file):
+    with open(input_file ,'r') as file:
         input_data = file.readlines()
     return input_data#list
 
@@ -235,9 +233,8 @@ def read_input(input_file = cfg.oxdna_input):
 # In[14]:
 
 
-def make_oxdna_inputs(input_data, target, output_dir , kakenhievolvedna_path = "../../kakenhievolvedna2/oxdna_run",trap_file_make = True):
-    #inputs_filename = os.path.join(output_dir, target + "_input_relax_1e5")
-    inputs_filename = os.path.join(output_dir, target + "_" + cfg.oxdna_input)
+def make_oxdna_inputs(oxdna_input_filename,input_data, target, output_dir , kakenhievolvedna_path = "../../kakenhievolvedna2/oxdna_run",trap_file_make = True):
+    inputs_filename = os.path.join(output_dir, target + "_" + oxdna_input_filename)
     file = open(inputs_filename, 'w')#ファイルを作成する
     for text in input_data:
         if "topology =" in text:
@@ -266,13 +263,18 @@ def make_oxdna_inputs(input_data, target, output_dir , kakenhievolvedna_path = "
 # In[15]:
 
 
-def run_oxdna(target, target_input, oxdna_exe = "oxDNA", oxdna_path = os.path.join(oxDNA_dir, "build/bin")):
+def run_oxdna(target, target_input, 
+              oxdna_exe = "oxDNA", 
+              oxdna_path = os.path.join(oxDNA_dir, "build/bin")):
     exefile = os.path.join(oxdna_path, oxdna_exe)
     print("exefile : ", exefile)
     executable = [exefile, target_input]#./oxDNA <inputfile>
     print("exe : ", executable)
     print("command: ",executable)
-    with open(os.path.join(os.path.dirname(target_input),target+"_run_oxdna_log.txt"),"w") as logfile:
+    with open(
+        os.path.join(
+            os.path.dirname(target_input),
+            target+"_run_oxdna_log.txt"),"w") as logfile:
         sp.run(executable, stdout=logfile, stderr = logfile)
     #テキストファイル内の出力設定を直接書き換えるとrenameは不要
     
@@ -298,18 +300,19 @@ def make_pdb(target, output_oxdna_dir, oxdna_path = os.path.join(oxDNA_dir, "UTI
 
 # ## シミュレーションを通しで実行
 
-# In[24]:
+# In[17]:
 
 
-def simulate(num, data, input_data, 
+def simulate(num, data, input_data, oxdna_input_filename,
              str_a, str_b, str_a_star, str_b_star, 
              length_dict, output_folder, output_ATGC_folder,
              energy_log_path):
     #print("simuration start\n")
     line = data[num]
     print("simulating line : ", line, "\n")
-    filename, replaced_linelist = write_file(line, str_a, str_b, str_a_star, str_b_star, output_ATGC_folder)
-    target = os.path.splitext(os.path.basename(filename))[0]#e〇〇という文字列
+    target,filename, replaced_linelist = write_file(line, str_a, str_b, str_a_star, str_b_star, output_ATGC_folder)
+    #e〇〇という文字列
+    #target = os.path.splitext(os.path.basename(filename))[0].replace("_seqence","")
     print("target : ", target)
     sys.stdout.flush() 
     print("making trap file... ")#success
@@ -327,7 +330,7 @@ def simulate(num, data, input_data,
     print("creating oxDNA input file.... : ", target)
     sys.stdout.flush() 
     #oxDNA実行ファイルを実行する
-    target_input = make_oxdna_inputs(input_data, target, output_folder)#oxDNA入力ファイルがe〇〇ごとに作成される
+    target_input = make_oxdna_inputs(oxdna_input_filename,input_data, target, output_folder)#oxDNA入力ファイルがe〇〇ごとに作成される
     print("created: ", target_input)
     sys.stdout.flush() 
 
@@ -361,7 +364,7 @@ def simulate(num, data, input_data,
     make_pdb(target, output_folder)
     print("{} pdb file :completed".format(target), "\ncreating connection dataframe...")
     sys.stdout.flush() 
-    connection_data, expected_num_strands, actual_num_strands = robf.create_connection_data(target, output_folder)
+    connection_data, expected_num_strands, actual_num_strands = robf.create_connection_data(target, output_folder, target_input)
     print("{} connection_data: created dataframe".format(target), "\ncalcurating convex_hull and cube volume...")
     sys.stdout.flush() 
     
@@ -377,6 +380,7 @@ def simulate(num, data, input_data,
     
     #新しくエネルギーも取得する
     #energy_file = os.path.join(output_folder,"/{}_energy.dat".format(target))
+    print("calculating energy...")
     energy = reef.potential_energy_mean(output_folder,target)
     print("potential energy: ",energy)
     sys.stdout.flush() 
@@ -395,7 +399,6 @@ def simulate(num, data, input_data,
     #logfile.writelines(["id",",","cube",",", "convex hull", ",", "expected_number_of_strands", ",", "actual_number_of_strands", ",", "potential_energy", "\n"])
     
     #logfile.writelines([target.replace("e", ""),",",str(cube_volume),",",str(convexhull_volume), ",", str(expected_num_strands), ",", str(actual_num_strands), ",", str(energy), "\n"])
-   
     
     
     print("{} : all simuration process were completed\n".format(target))
@@ -407,8 +410,8 @@ def simulate(num, data, input_data,
 # In[18]:
 
 
-def make_output(data, output_folder,output_ATGC_folder,energy_log_path):
-    
+def make_output(data, output_folder,output_ATGC_folder,energy_log_path,oxdna_input_file):
+    print("start in: ",output_folder)
     length_dict= get_ab_length(data) ## TODO: Not compatible with L3
     length_a = length_dict["a"]
     length_b = length_dict["b"]
@@ -424,34 +427,38 @@ def make_output(data, output_folder,output_ATGC_folder,energy_log_path):
         
     print("output folder : ", output_folder, "\n")
     
-    input_data = read_input()#oxDNAのinput
+    input_data = read_input(oxdna_input_file)#oxDNAのinput
 
     # cube_data = pd.DataFrame(index=[], columns=["size"])    
     # convexhull_data = pd.DataFrame(index=[], columns=["size"])
-    for num in range(head_index, end_index):
-        simulate(num, 
-                 data, input_data, 
-                 str_a, str_b, str_a_star, str_b_star, 
-                 length_dict, output_folder, output_ATGC_folder,
-                 energy_log_path)
-        print("data[{}]: simulated".format(num))
-        sys.stdout.flush()
+    # for num in range(head_index, end_index):
+    #     simulate(num, 
+    #              data, input_data, 
+    #              str_a, str_b, str_a_star, str_b_star, 
+    #              length_dict, output_folder, output_ATGC_folder,
+    #              energy_log_path)
+    #     print("data[{}]: simulated".format(num))
+    #     sys.stdout.flush()
     #for num in range(head_index, end_index):
-    # evalu = functools.partial(simulate, 
-    #                           data = data, 
-    #                           input_data = input_data, 
-    #                           str_a = str_a, 
-    #                           str_b = str_b,
-    #                           str_a_star = str_a_star,  
-    #                           str_b_star = str_b_star,
-    #                           length_dict = length_dict, 
-    #                           output_folder = output_folder, 
-    #                           output_ATGC_folder = output_ATGC_folder)
-    # print("eval set OK\n")
-    # with Pool(cfg.poolnum) as p:
-    #     res = p.map(evalu, range(head_index, end_index+1))
-    # sys.stdout.flush()
-    # print("map end 🗺\n")
+        
+    evalu = functools.partial(simulate, 
+                                data = data, 
+                                input_data = input_data, 
+                                oxdna_input_filename = oxdna_input_file,
+                                str_a = str_a, 
+                                str_b = str_b,
+                                str_a_star = str_a_star,  
+                                str_b_star = str_b_star,
+                                length_dict = length_dict, 
+                                output_folder = output_folder, 
+                                output_ATGC_folder = output_ATGC_folder,
+                                energy_log_path = energy_log_path)
+    print("eval set OK\n")
+    with Pool(cfg.poolnum) as p:
+        #res = 
+        p.map(evalu, range(head_index, end_index+1))
+    sys.stdout.flush()
+    print("map end 🗺\n")
     
     
 #     record_cube = pd.Series([a for a,_ in res])
@@ -467,7 +474,7 @@ def make_output(data, output_folder,output_ATGC_folder,energy_log_path):
     return data[head_index], data[end_index]
 
 
-# In[34]:
+# In[19]:
 
 
 def oxdna_energy_mean(energy_log_path):
@@ -478,11 +485,11 @@ def oxdna_energy_mean(energy_log_path):
         f.writelines(["oxdna_energy_mean","\n",str(energy_mean)])
 
 
-# In[36]:
+# In[20]:
 
 
 def main(args):
-    
+    print("args:",args)
     #sys.argv[1]はoutput***.pil, sys.argv[2]は出力先ディレクトリパス
     with open(args[1],'r') as file:#sys.argv[1]はoutput***.pil
 
@@ -503,8 +510,12 @@ def main(args):
                                    "expected_number_of_strands", ",",
                                    "actual_number_of_strands", ",", 
                                    "potential_energy", "\n"])
+            
+
+        oxdna_input_file = args[3]
+
         start, end = make_output(
-            data, output_folder, output_ATGC_folder,energy_log_path)
+            data, output_folder, output_ATGC_folder,energy_log_path,oxdna_input_file)
         #今後make_outputに渡す出力先フォルダ名は一つに統合したい。
         oxdna_energy_mean(energy_log_path)
         
@@ -516,14 +527,14 @@ def main(args):
 # In[ ]:
 
 
-# #test
+#test
 # import glob
 # import os
-# for pils in glob.glob("2022-12-19/sim_result_peppercorn*/*_result.pil"):
+# for pils in glob.glob("2023-07-31/sim_result_peppercorn*/*_result.pil"):
 #     main(["",pils,os.path.dirname(pils)])
 
 
-# In[ ]:
+# In[22]:
 
 
 if __name__ == "__main__":

@@ -15,6 +15,8 @@ import importlib
 def make_datetime_folder(parent_dir):
     dt = str(datetime.datetime.now().strftime('%Y%m%d_%H%M'))
     path = os.path.join(parent_dir,dt)
+    if not os.path.exists(parent_dir):
+        os.mkdir(parent_dir)
     if not os.path.exists(path):
         os.mkdir(path)
     return path
@@ -34,6 +36,9 @@ def make_count_folder(parent_dir,cnt):
 
 
 def make_dir(parent_dir,dirname):
+    if not os.path.exists(parent_dir):
+        os.mkdir(parent_dir)
+        
     path = os.path.join(parent_dir,dirname)
     if not os.path.exists(path):
         os.mkdir(path)

@@ -23,18 +23,12 @@ importlib.reload(robf)
 # In[2]:
 
 
-# with open('output.pil','r') as file:
-#     data = file.readlines()
-
-# In[40]:
-
-
 def get_coordinate_data(connection_data):
     coordinate_data = connection_data.loc[:,[ "position_rx", "position_ry", "position_rz"]]
     return coordinate_data
 
 
-# In[41]:
+# In[3]:
 
 
 def plot_coordinate_data(coordinate_data): 
@@ -52,7 +46,7 @@ def plot_coordinate_data(coordinate_data):
     plt.show()
 
 
-# In[42]:
+# In[4]:
 
 
 def get_cube_volume(coordinate_data):
@@ -72,7 +66,7 @@ def get_cube_volume(coordinate_data):
     return volume_cube
 
 
-# In[43]:
+# In[5]:
 
 
 def test(output_dir, target):
@@ -91,33 +85,17 @@ def test(output_dir, target):
     print(coordinate_data.duplicated(subset=['position_rx','position_ry','position_rz']))
     display(coordinate_data.drop_duplicates().reset_index(drop = True))
 
-    #display( get_coordinate_from_connection(connection_data) )
-    #pyvistaを用いたより正確なサイズ
-    #取得した点（座標）からメッシュを作る
 
-
-# In[44]:
+# In[6]:
 
 
 def main():
     test("output_oxDNA", "e0")
 
 
-# In[45]:
+# In[ ]:
 
 
 if __name__ == "__main__":
     main()
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 

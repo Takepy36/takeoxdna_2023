@@ -3,10 +3,11 @@
 
 # In[392]:
 
-
+import os
 import smtplib
 from email.mime.multipart import  MIMEMultipart
 from email.mime.text import MIMEText
+from email.mime.application import MIMEApplication
 
 
 # In[5]:
@@ -31,7 +32,7 @@ def program_complete_mail(login_address = "superyoshibros.2@gmail.com",
     text = MIMEText(mailtext)
     #例:"🎉🎉🎉Python program 【{}】 completed!🎉🎉🎉".format(program_name)
     message.attach(text)
-    
+
     server.send_message(message)
     server.quit()
 
